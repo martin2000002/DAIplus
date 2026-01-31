@@ -1,18 +1,23 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 
 const navItems = [
   { label: 'Inicio', href: '#inicio' },
-  { label: 'Insights', href: '#insights' },
+  { label: 'Enfoque', href: '#enfoque' },
   { label: 'Servicios', href: '#servicios' },
   { label: 'Nosotros', href: '#nosotros' },
   { label: 'Contacto', href: '#contacto' },
 ];
 
-export function Header() {
+interface HeaderProps {
+  forceScrolled?: boolean;
+}
+
+export function Header({ forceScrolled = false }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -62,12 +67,15 @@ export function Header() {
     }
   };
 
+  // Determina si el header debe tener estilo scrolled
+  const showScrolledStyle = isScrolled || forceScrolled;
+
   return (
     <>
       <header
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-          isScrolled
+          showScrolledStyle
             ? 'glass shadow-lg py-3'
             : 'bg-transparent py-5'
         )}
@@ -81,17 +89,17 @@ export function Header() {
               className="relative z-10 flex items-center"
               aria-label="DAI+ - Ir al inicio"
             >
-              <span 
+              <Image
+                src="/images/logo-compact.png"
+                alt="DAI+ Logo"
+                width={120}
+                height={40}
                 className={cn(
-                  "text-2xl md:text-3xl font-bold tracking-tight transition-colors duration-300 font-heading",
-                  isScrolled ? 'text-azul' : 'text-white'
+                  "h-8 md:h-10 w-auto transition-all duration-300",
+                  showScrolledStyle ? '' : 'brightness-0 invert'
                 )}
-              >
-                DAI
-              </span>
-              <span className="text-2xl md:text-3xl font-bold text-naranja font-heading">
-                +
-              </span>
+                priority
+              />
             </a>
 
             {/* Desktop Navigation */}
@@ -104,7 +112,7 @@ export function Header() {
                   className={cn(
                     "px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 font-heading",
                     "hover:bg-naranja hover:text-white",
-                    isScrolled
+                    showScrolledStyle
                       ? 'text-gray-700'
                       : 'text-white/90'
                   )}
@@ -126,7 +134,7 @@ export function Header() {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={cn(
                 "lg:hidden p-2.5 rounded-xl transition-colors",
-                isScrolled 
+                showScrolledStyle 
                   ? 'text-azul hover:bg-azul/10' 
                   : 'text-white hover:bg-white/10'
               )}

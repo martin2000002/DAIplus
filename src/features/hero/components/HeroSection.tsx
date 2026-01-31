@@ -144,24 +144,24 @@ export function HeroSection() {
           <div className="hero-badge inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
             <div className="w-2 h-2 rounded-full bg-naranja animate-pulse" />
             <span className="text-sm font-medium text-white/90 tracking-wide font-heading">
-              Consultoría Financiera Especializada
+              Estrategia e Innovación
             </span>
           </div>
 
           {/* Main Title */}
           <h1 className="text-white mb-4" style={{ perspective: '1000px' }}>
             <span className="hero-title-line text-white block text-6xl md:text-7xl lg:text-8xl font-bold font-heading tracking-tight">
-              DAI<span>+</span>
+              DAI<span className="text-naranja">+</span>
             </span>
             <span className="hero-title-line block text-lg md:text-xl lg:text-2xl font-medium text-white/90 mt-3">
-              Desarrollo, Asesoría e Innovación
+              Estrategia e Innovación
             </span>
           </h1>
 
           {/* Subtitle */}
           <p className="hero-subtitle text-base md:text-lg text-white/85 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Acompañamos a organizaciones, cooperativas y personas a tomar decisiones 
-            financieras más informadas, sostenibles y alineadas con sus objetivos.
+            Transformamos la forma de pensar, decidir y actuar de las organizaciones 
+            para generar impacto real y sostenible.
           </p>
 
           {/* CTA Buttons */}
@@ -170,7 +170,7 @@ export function HeroSection() {
               onClick={handleCTAClick}
               className="hero-cta btn btn-primary btn-md group"
             >
-              Agendar Consultoría
+              Agenda una Consulta
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </button>
             
@@ -178,7 +178,7 @@ export function HeroSection() {
               onClick={handleServicesClick}
               className="hero-cta btn btn-outline btn-md"
             >
-              Conocer Servicios
+              Explorar Servicios
             </button>
           </div>
 

@@ -12,12 +12,12 @@ if (typeof window !== 'undefined') {
 
 const consultant = {
   name: 'Diego Andrade',
-  role: 'Consultor Principal',
-  bio: 'Profesional con amplia experiencia en consultoría financiera para organizaciones, cooperativas de ahorro y crédito, y empresas. Especializado en planificación financiera, análisis estratégico y educación financiera. Su enfoque se centra en generar soluciones prácticas, adaptadas a la realidad de cada cliente, promoviendo una gestión financiera responsable y sostenible.',
+  role: 'Consultor Principal | DAI+',
+  bio: 'En DAI+ creemos que la verdadera transformación no ocurre solo cuando se cambian procesos, sino cuando evolucionan la forma de pensar, decidir y actuar de las personas y las organizaciones. Diseñamos e implementamos soluciones estratégicas, innovadoras y personalizadas para impulsar la sostenibilidad, competitividad y propuesta de valor de nuestros clientes.',
   credentials: [
-    'Especialista en Finanzas Corporativas',
-    'Consultor de Cooperativas de Ahorro y Crédito',
-    'Educador Financiero Certificado',
+    'Consultoría de alto impacto para cooperativas y empresas',
+    'Diseño e implementación de estrategias organizacionales',
+    'Capacitación transformacional orientada a resultados',
     'Más de 10 años de experiencia en el sector',
   ],
   linkedin: 'https://linkedin.com/in/diego-andrade',
@@ -100,15 +100,16 @@ export function TeamSection() {
         {/* Section Header */}
         <div className="team-header text-center mb-14 md:mb-20">
           <span className="inline-block px-5 py-2 mb-5 text-sm font-semibold text-naranja bg-naranja/20 rounded-full font-heading">
-            Conócenos
+            Quiénes Somos
           </span>
           
           <h2 className="heading-lg text-white mb-5 font-heading">
-            El Consultor
+            Tu Socio Estratégico
           </h2>
           
-          <p className="text-body-lg text-white/80 max-w-xl mx-auto">
-            Experiencia y compromiso al servicio de tu organización.
+          <p className="text-body-lg text-white/80 max-w-2xl mx-auto">
+            Nos integramos como un socio estratégico temporal, comprometido con 
+            resultados reales y capacidades que permanecen en el tiempo.
           </p>
         </div>
 

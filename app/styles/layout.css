@@ -1,0 +1,75 @@
+/* ============================================
+   Layout Styles
+   Sections, Containers, Decorative Elements
+   ============================================ */
+
+/* ----- Sections ----- */
+
+.section {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-light {
+  background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);
+}
+
+.section-warm {
+  background: linear-gradient(180deg, #FCECD4 0%, #FDF5EB 100%);
+}
+
+.section-dark {
+  background: linear-gradient(180deg, var(--color-azul-dark) 0%, var(--color-azul) 100%);
+  color: white;
+}
+
+.section-dark h2,
+.section-dark h3,
+.section-dark h4 {
+  color: white;
+}
+
+/* ----- Container ----- */
+
+.container-custom {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-custom {
+    padding: 0 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-custom {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-custom {
+    padding: 0 2rem;
+  }
+}
+
+/* ----- Decorative Circles ----- */
+
+.circle-deco {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.circle-deco-primary {
+  background: linear-gradient(135deg, var(--color-azul) 0%, var(--color-azul-light) 100%);
+  opacity: 0.08;
+}
+
+.circle-deco-accent {
+  background: linear-gradient(135deg, var(--color-naranja) 0%, var(--color-naranja-light) 100%);
+  opacity: 0.12;
+}

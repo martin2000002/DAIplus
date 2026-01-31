@@ -1,0 +1,73 @@
+/* ============================================
+   Utility Classes
+   Effects, Animations, Helpers
+   ============================================ */
+
+/* ----- Text Effects ----- */
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-azul) 0%, var(--color-azul-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ----- Glass Effects ----- */
+
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-dark {
+  background: rgba(31, 79, 115, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ----- GSAP Animation Helpers ----- */
+
+.gsap-fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.gsap-fade-in {
+  opacity: 0;
+}
+
+.gsap-scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.gsap-slide-left {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+.gsap-slide-right {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+/* ----- Logo Slider Animation ----- */
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.logo-slider-track {
+  display: flex;
+  animation: scroll 25s linear infinite;
+}
+
+.logo-slider-track:hover {
+  animation-play-state: paused;
+}

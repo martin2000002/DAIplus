@@ -4,51 +4,12 @@ import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { 
-  Target, 
-  TrendingUp, 
-  Building2, 
-  Globe, 
-  BarChart3 
-} from 'lucide-react';
+import { insights } from '@/src/features/services/data/services';
 
 // Register ScrollTrigger
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
-
-const insights = [
-  {
-    id: 'decision',
-    title: 'Decisiones Informadas',
-    description: 'Acompañamos a comprender la realidad organizacional para tomar decisiones más informadas y alineadas a objetivos estratégicos.',
-    icon: Target,
-  },
-  {
-    id: 'transform',
-    title: 'Transformación Financiera',
-    description: 'Transformamos la información financiera en una herramienta de gestión que permite mejorar procesos y fortalecer la planificación.',
-    icon: TrendingUp,
-  },
-  {
-    id: 'strength',
-    title: 'Fortalecimiento Económico',
-    description: 'Apoyamos la construcción de estructuras económicas más sólidas, eficientes y preparadas para el crecimiento sostenible.',
-    icon: Building2,
-  },
-  {
-    id: 'sustainability',
-    title: 'Gestión Responsable',
-    description: 'Impulsamos una gestión enfocada no solo en resultados, sino también en la sostenibilidad y el impacto a largo plazo.',
-    icon: Globe,
-  },
-  {
-    id: 'analysis',
-    title: 'Análisis Estratégico',
-    description: 'Facilitamos la toma de decisiones estratégicas mediante análisis claros, realistas y adaptados a cada organización.',
-    icon: BarChart3,
-  },
-];
 
 export function InsightsSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -104,7 +65,7 @@ export function InsightsSection() {
   return (
     <section 
       ref={sectionRef}
-      id="insights" 
+      id="enfoque" 
       className="section section-light py-20 md:py-28"
     >
       {/* Decorative Elements */}
@@ -119,12 +80,12 @@ export function InsightsSection() {
           </span>
           
           <h2 className="insights-title heading-lg text-azul mb-5 font-heading">
-            Insights Estratégicos
+            Enfoque Estratégico
           </h2>
           
           <p className="insights-subtitle text-body-lg text-gray-600 max-w-2xl mx-auto">
-            Transformamos información en decisiones estratégicas que impulsan 
-            el crecimiento sostenible de tu organización.
+            Creamos capacidades internas que permanecen en el tiempo y se convierten en 
+            motores de crecimiento para tu organización.
           </p>
         </div>
 

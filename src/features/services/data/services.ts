@@ -1,62 +1,238 @@
-import { IconCooperative, IconPlanning, IconBusiness, IconEducation } from '@/src/shared/icons';
-import { ComponentType, SVGProps } from 'react';
+import { 
+  Users, 
+  Building2, 
+  GraduationCap, 
+  Rocket,
+  BookOpen,
+  Target,
+  TrendingUp,
+  Globe,
+  BarChart3,
+  Lightbulb,
+  type LucideIcon
+} from 'lucide-react';
+
+// ============================================
+// Tipos
+// ============================================
+
+export interface ServiceBenefit {
+  title: string;
+  description: string;
+}
+
+export interface ServicePillar {
+  title: string;
+  description: string;
+}
+
+export interface Course {
+  id: number;
+  title: string;
+  description: string;
+}
 
 export interface Service {
   id: string;
+  slug: string;
   title: string;
+  shortTitle: string;
   subtitle: string;
   description: string;
-  benefits: string[];
-  icon: ComponentType<SVGProps<SVGSVGElement>>;
+  fullDescription: string;
+  icon: LucideIcon;
+  accent: 'azul' | 'naranja';
+  benefits?: string[];
+  pillars?: ServicePillar[];
+  bulletPoints?: string[];
+  courses?: Course[];
+  philosophy?: string;
 }
+
+// ============================================
+// Servicios Principales
+// ============================================
 
 export const services: Service[] = [
   {
     id: 'cooperativas',
-    title: 'Consultoría para Cooperativas',
-    subtitle: 'Cooperativas de Ahorro y Crédito',
-    description: 'Brindamos acompañamiento especializado enfocado en fortalecer la gestión económica, mejorar la toma de decisiones y asegurar la sostenibilidad.',
-    benefits: [
-      'Análisis financiero integral',
-      'Optimización de recursos',
-      'Proyección de crecimiento ordenado',
+    slug: 'cooperativas',
+    title: 'Servicios Integrales para Cooperativas de Ahorro y Crédito',
+    shortTitle: 'Cooperativas de Ahorro y Crédito',
+    subtitle: 'Consultoría · Asesoría · Capacitación',
+    description: 'Brindamos acompañamiento especializado para fortalecer la gestión organizacional, financiera y comercial de las cooperativas.',
+    fullDescription: 'Brindamos acompañamiento especializado para fortalecer la gestión organizacional, financiera y comercial de las cooperativas de ahorro y crédito, mejorar la toma de decisiones y asegurar su sostenibilidad en entornos cada vez más exigentes. Nuestro enfoque es flexible y contextualizado, considerando el tamaño, madurez institucional y entorno de cada cooperativa, con el objetivo de generar soluciones prácticas, aplicables y de alto impacto.',
+    icon: Users,
+    accent: 'azul',
+    pillars: [
+      {
+        title: 'Consultoría de alto impacto',
+        description: 'Acompañamos desde el diagnóstico hasta la implementación, transferimos capacidades y dejamos equipos preparados para sostener y escalar los cambios.'
+      },
+      {
+        title: 'Asesoría estratégica para la toma de decisiones',
+        description: 'Las organizaciones exitosas no toman más decisiones: toman mejores decisiones. Aportamos análisis, metodologías y criterios que fortalecen la calidad y oportunidad de cada decisión clave.'
+      },
+      {
+        title: 'Capacitación transformacional',
+        description: 'Formamos equipos que aplican, ejecutan y mejoran. Diseñamos experiencias de aprendizaje orientadas a resultados, no solo a contenidos.'
+      }
     ],
-    icon: IconCooperative,
+    philosophy: 'Nuestra filosofía se basa en la personalización de cada solución, integrando estrategia e innovación como ejes transversales. Porque sin estrategia no hay resultados, y sin innovación no hay crecimiento.'
   },
   {
-    id: 'planificacion',
-    title: 'Planificación Financiera',
-    subtitle: 'Control y Proyección',
-    description: 'Acompañamos en el diseño y fortalecimiento de procesos de planificación financiera para anticipar riesgos y optimizar recursos.',
-    benefits: [
-      'Elaboración de presupuestos',
-      'Proyecciones y escenarios',
-      'Toma de decisiones estratégicas',
-    ],
-    icon: IconPlanning,
+    id: 'empresas',
+    slug: 'empresas',
+    title: 'Servicios de Consultoría y Asesoría para Empresas y Organizaciones',
+    shortTitle: 'Empresas y Organizaciones',
+    subtitle: 'Estrategia · Sostenibilidad · Impacto',
+    description: 'Servicios orientados a fortalecer la gestión, sostenibilidad, impacto social y desempeño institucional.',
+    fullDescription: 'Ofrecemos servicios de consultoría y asesoría orientados a fortalecer la gestión, sostenibilidad, impacto social y desempeño institucional de empresas, organizaciones de la Economía Popular y Solidaria, fundaciones, ONG y organizaciones de la sociedad civil. Aportamos visión estratégica, rigor técnico y enfoque práctico para convertir desafíos en oportunidades de crecimiento.',
+    icon: Building2,
+    accent: 'naranja',
+    bulletPoints: [
+      'Definición y ejecución de estrategias organizacionales',
+      'Fortalecimiento de modelos de gestión y gobernanza',
+      'Diseño e implementación de proyectos de impacto social y económico',
+      'Integración de sostenibilidad y criterios ESG en la gestión',
+      'Innovación organizacional y mejora continua'
+    ]
   },
   {
-    id: 'empresarial',
-    title: 'Consultoría Empresarial',
-    subtitle: 'Empresas y Emprendimientos',
-    description: 'Asesoramos a empresas que buscan ordenar sus finanzas, mejorar rentabilidad y fortalecer su gestión económica.',
-    benefits: [
-      'Claridad financiera',
-      'Mejora de rentabilidad',
-      'Desarrollo económico sostenible',
-    ],
-    icon: IconBusiness,
+    id: 'personas',
+    slug: 'personas',
+    title: 'Servicios de Capacitación y Asesoría para Personas Naturales',
+    shortTitle: 'Personas Naturales',
+    subtitle: 'Educación Financiera · Planificación',
+    description: 'Espacios de capacitación y asesoría para comprender mejor las finanzas y tomar decisiones económicas más informadas.',
+    fullDescription: 'Desarrollamos espacios de capacitación y asesoría dirigidos a personas que desean comprender mejor sus finanzas, organizar sus recursos y tomar decisiones económicas más informadas. Nuestro enfoque es práctico, cercano y adaptado a cada realidad, promoviendo una relación más consciente, responsable y estratégica con el dinero.',
+    icon: GraduationCap,
+    accent: 'azul',
+    bulletPoints: [
+      'Fortalecer la educación financiera personal y familiar',
+      'Mejorar la toma de decisiones económicas y de inversión',
+      'Desarrollar hábitos financieros sostenibles',
+      'Acompañar procesos de emprendimiento y planificación financiera'
+    ]
   },
   {
-    id: 'educacion',
-    title: 'Educación Financiera',
-    subtitle: 'Personas Naturales',
-    description: 'Ofrecemos espacios de educación y asesoría para comprender mejor las finanzas personales y tomar decisiones más informadas.',
+    id: 'programas',
+    slug: 'programas',
+    title: 'Implementación de Programas y Proyectos',
+    shortTitle: 'Programas y Proyectos',
+    subtitle: 'Desarrollo · Innovación · Sostenibilidad',
+    description: 'Diseñamos e implementamos programas de desarrollo económico, fortalecimiento organizacional e innovación.',
+    fullDescription: 'Diseñamos e implementamos programas y proyectos de desarrollo económico y ambiental, fortalecimiento organizacional, educación financiera, inclusión económica, innovación y sostenibilidad. Nuestros proyectos se alinean a objetivos estratégicos claros y cuentan con indicadores de impacto que permiten medir resultados, aprendizaje y sostenibilidad en el tiempo.',
+    icon: Rocket,
+    accent: 'naranja',
     benefits: [
-      'Comprensión de finanzas personales',
-      'Organización de recursos',
-      'Relación consciente con el dinero',
-    ],
-    icon: IconEducation,
+      'Desarrollo económico y ambiental',
+      'Fortalecimiento organizacional',
+      'Educación financiera',
+      'Inclusión económica',
+      'Innovación y sostenibilidad'
+    ]
+  },
+  {
+    id: 'cursos',
+    slug: 'cursos',
+    title: 'Cursos Especializados DAI+',
+    shortTitle: 'Cursos Especializados',
+    subtitle: 'Presencial · Virtual · Híbrido',
+    description: 'Cursos estructurados que permiten profundizar, reforzar y dar continuidad a los procesos de aprendizaje.',
+    fullDescription: 'Además de nuestras capacitaciones corporativas, ofrecemos cursos estructurados y complementarios que permiten profundizar, reforzar y dar continuidad a los procesos de aprendizaje. Estos cursos pueden ser contratados por organizaciones o personas de forma independiente, como una extensión natural de las capacitaciones, en modalidad presencial, virtual o híbrida.',
+    icon: BookOpen,
+    accent: 'azul',
+    courses: [
+      {
+        id: 1,
+        title: 'Decisiones Estratégicas que Generan Valor',
+        description: 'Estrategia aplicada para líderes y directivos que buscan tomar mejores decisiones en contextos complejos.'
+      },
+      {
+        id: 2,
+        title: 'Finanzas con Propósito: Sostenibilidad y Rentabilidad',
+        description: 'Integración de criterios financieros, sociales y ambientales en la gestión organizacional.'
+      },
+      {
+        id: 3,
+        title: 'Inteligencia de Negocios para la Toma de Decisiones',
+        description: 'Uso práctico de datos, indicadores y análisis para mejorar resultados.'
+      },
+      {
+        id: 4,
+        title: 'Innovar en Servicios Financieros',
+        description: 'Diseño de productos centrados en el socio/cliente, inclusión financiera y última milla.'
+      },
+      {
+        id: 5,
+        title: 'Cobranzas Inteligentes y Neurocobranzas',
+        description: 'Estrategias efectivas, éticas y basadas en comportamiento.'
+      },
+      {
+        id: 6,
+        title: 'Liderazgo Estratégico para Jefes de Agencia',
+        description: 'Desarrollo de competencias de liderazgo, gestión comercial y equipos de alto desempeño.'
+      },
+      {
+        id: 7,
+        title: 'Educación Financiera para la Vida y el Negocio',
+        description: 'Curso práctico para personas y organizaciones que buscan tomar decisiones financieras conscientes.'
+      },
+      {
+        id: 8,
+        title: 'Metodologías Ágiles para Organizaciones que Evolucionan',
+        description: 'Innovación aplicada, pensamiento ágil y gestión del cambio.'
+      }
+    ]
+  }
+];
+
+// ============================================
+// Insights Estratégicos
+// ============================================
+
+export const insights = [
+  {
+    id: 'transformacion',
+    title: 'Consultoría de Alto Impacto',
+    description: 'Impulsamos la transformación de organizaciones y cooperativas mediante consultoría de alto impacto, asesoría estratégica y capacitación transformacional.',
+    icon: TrendingUp,
+  },
+  {
+    id: 'soluciones',
+    title: 'Soluciones Integrales',
+    description: 'Diseñamos y construimos soluciones integrales, personalizadas y orientadas a resultados, fortaleciendo la gestión estratégica, institucional y comercial.',
+    icon: Target,
+  },
+  {
+    id: 'ventajas',
+    title: 'Ventajas Competitivas',
+    description: 'Creamos ventajas competitivas sostenibles y resilientes, basadas en innovación, estrategia y desarrollo del talento humano.',
+    icon: Lightbulb,
+  },
+  {
+    id: 'ecosistemas',
+    title: 'Ecosistemas de Desarrollo',
+    description: 'Promovemos ecosistemas que permiten a personas y organizaciones alcanzar su máximo potencial y avanzar hacia la autonomía económica.',
+    icon: Globe,
+  },
+  {
+    id: 'sostenibilidad',
+    title: 'Sostenibilidad Integral',
+    description: 'Acompañamos la integración de criterios ambientales y de sostenibilidad, generando valor económico, social y ambiental simultáneamente.',
+    icon: BarChart3,
   },
 ];
+
+// ============================================
+// Helper para obtener servicio por slug
+// ============================================
+
+export function getServiceBySlug(slug: string): Service | undefined {
+  return services.find(service => service.slug === slug);
+}
+
+export function getAllServiceSlugs(): string[] {
+  return services.map(service => service.slug);
+}

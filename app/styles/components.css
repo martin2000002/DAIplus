@@ -1,0 +1,115 @@
+/* ============================================
+   Component Styles
+   Buttons, Cards, Inputs
+   ============================================ */
+
+/* ----- Buttons ----- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  border-radius: var(--radius-button);
+  transition: all var(--duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-naranja);
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-naranja) 0%, var(--color-naranja-dark) 100%);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, var(--color-azul) 0%, var(--color-azul-dark) 100%);
+  color: white;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px 0 rgba(31, 79, 115, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.btn-outline:hover {
+  background: white;
+  color: var(--color-azul);
+  border-color: white;
+  transform: translateY(-2px);
+}
+
+/* Button Sizes */
+.btn-sm { padding: 0.5rem 1.25rem; font-size: 0.875rem; }
+.btn-md { padding: 0.875rem 2rem; font-size: 1rem; }
+.btn-lg { padding: 1rem 2.5rem; font-size: 1.125rem; }
+
+/* ----- Cards ----- */
+
+.card {
+  background: white;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  transition: all var(--duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* ----- Inputs ----- */
+
+.input {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: #1F2937;
+  background: #F8FAFC;
+  border: 2px solid #E2E8F0;
+  border-radius: 0.75rem;
+  transition: all var(--duration-fast);
+}
+
+.input:focus {
+  outline: none;
+  background: white;
+  border-color: var(--color-azul);
+  box-shadow: 0 0 0 4px rgba(31, 79, 115, 0.1);
+}
+
+.input::placeholder {
+  color: #94A3B8;
+}
+
+.input-error {
+  border-color: #EF4444;
+}
+
+.input-error:focus {
+  border-color: #EF4444;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+}
