@@ -91,7 +91,15 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <meta name="theme-color" content="#1F4F73" />
+        <meta name="theme-color" content="#1F4F73" data-color="primary" />
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            try {
+              const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--color-primary').trim() || '#1F4F73';
+              document.querySelector('meta[name="theme-color"]').setAttribute('content', primaryColor);
+            } catch(e) {}
+          `
+        }} />
       </head>
       <body
         className={`${montserrat.variable} ${openSans.variable} antialiased`}

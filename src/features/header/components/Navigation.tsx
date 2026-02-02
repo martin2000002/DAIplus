@@ -46,9 +46,9 @@ export function Navigation({ className, isScrolled = false, onItemClick }: Navig
               onClick={(e) => handleClick(e, item.href)}
               className={cn(
                 "px-4 py-2 rounded-full text-sm font-medium transition-all duration-200",
-                "hover:bg-[var(--color-naranja-dai)] hover:text-white",
+                "hover:bg-accent hover:text-white",
                 isScrolled
-                  ? 'text-[var(--color-gray-700)] hover:text-white'
+                  ? 'text-gray-700 hover:text-white'
                   : 'text-white/90 hover:text-white'
               )}
               style={{ fontFamily: 'var(--font-heading)' }}

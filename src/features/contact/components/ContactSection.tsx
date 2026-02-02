@@ -81,33 +81,33 @@ export function ContactSection() {
       id="contacto" 
       className="section py-16 md:py-20 bg-white"
     >
-      {/* Decorative Elements */}
-      <div className="circle-deco circle-deco-primary w-80 h-80 top-20 -right-40" />
-      <div className="circle-deco circle-deco-accent w-64 h-64 -bottom-20 -left-32" />
-
-      <div className="container-custom relative z-10 max-w-5xl">
-        {/* Section Header */}
-        <div className="contact-header text-center mb-10 md:mb-14">
-          <span className="inline-block px-4 py-1.5 mb-4 text-sm font-semibold text-azul bg-azul/10 rounded-full font-heading">
-            Contáctanos
-          </span>
+      <div className="container-custom relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
           
-          <h2 className="heading-md text-azul mb-4 font-heading">
-            ¿Listo para Transformar tus Finanzas?
-          </h2>
-          
-          <p className="text-base md:text-lg text-gray-600 max-w-xl mx-auto">
-            Cuéntanos sobre tu organización y cómo podemos ayudarte a alcanzar 
-            tus objetivos financieros.
-          </p>
-        </div>
+          {/* Left Side - Form */}
+          <div>
+            {/* Section Header */}
+            <div className="contact-header mb-8">
+              <span className="inline-block px-4 py-1.5 mb-4 text-sm font-semibold text-primary bg-primary/10 rounded-full font-heading">
+                Contáctanos
+              </span>
+              
+              <h2 className="heading-md text-primary mb-4 font-heading">
+                ¿Listo para Transformar tus Finanzas?
+              </h2>
+              
+              <p className="text-base text-gray-600">
+                Cuéntanos sobre tu organización y cómo podemos ayudarte a alcanzar 
+                tus objetivos financieros.
+              </p>
+            </div>
 
-        {/* Contact Form - Centered */}
-        <div className="contact-form max-w-xl mx-auto">
-          <div className="card p-6 md:p-8">
-            <h3 className="text-xl font-bold text-azul mb-6 font-heading text-center">
-              Agendar Consultoría
-            </h3>
+            {/* Contact Form */}
+            <div className="contact-form">
+              <div className="card p-6 md:p-8">
+                <h3 className="text-xl font-bold text-primary mb-6 font-heading">
+                  Conversemos
+                </h3>
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Success Message */}
               {status === 'success' && (
@@ -226,6 +226,26 @@ export function ContactSection() {
                 * Campos requeridos. Tu información será tratada con confidencialidad.
               </p>
             </form>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Side - Image */}
+          <div className="contact-info hidden lg:flex items-stretch">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl w-full">
+              <img 
+                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80"
+                alt="Consultoría profesional"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-primary-dark/80 via-primary/40 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                <h3 className="text-2xl font-bold mb-3 font-heading text-white">Trabajemos juntos</h3>
+                <p className="text-white/90 text-sm leading-relaxed">
+                  Más de 10 años acompañando organizaciones en su camino hacia el éxito financiero y organizacional.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

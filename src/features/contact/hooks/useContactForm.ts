@@ -73,20 +73,13 @@ export function useContactForm() {
     setStatus('loading');
     setErrorMessage('');
 
+    // TODO: Configurar Firebase Functions para el envío de formularios
+    // Por ahora, solo mostramos un mensaje de éxito simulado
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      // Simular delay de envío
+      await new Promise(resolve => setTimeout(resolve, 1000));
 
-      if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.message || 'Error al enviar el mensaje');
-      }
-
+      // Mostrar mensaje de éxito
       setStatus('success');
       setFormData({
         nombre: '',
@@ -99,6 +92,22 @@ export function useContactForm() {
       setTimeout(() => {
         setStatus('idle');
       }, 5000);
+
+      /* 
+      // Código para cuando Firebase Functions esté configurado:
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message || 'Error al enviar el mensaje');
+      }
+      */
 
     } catch (error) {
       setStatus('error');

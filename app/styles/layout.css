@@ -11,15 +11,15 @@
 }
 
 .section-light {
-  background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);
+  background: linear-gradient(180deg, var(--color-gray-50) 0%, var(--color-white) 100%);
 }
 
 .section-warm {
-  background: linear-gradient(180deg, #FCECD4 0%, #FDF5EB 100%);
+  background: linear-gradient(135deg, var(--color-accent-100) 0%, var(--color-accent-50) 50%, var(--color-accent-100) 100%);
 }
 
 .section-dark {
-  background: linear-gradient(180deg, var(--color-azul-dark) 0%, var(--color-azul) 100%);
+  background: linear-gradient(180deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
   color: white;
 }
 
@@ -30,27 +30,44 @@
 }
 
 /* ----- Container ----- */
+/* 
+ * container-custom: Clase centralizada para contenedores responsive
+ * Uso: <div className="container-custom">...</div>
+ * 
+ * Características:
+ * - max-width: 1400px (centrado)
+ * - Padding horizontal responsive:
+ *   • Mobile:  16px (1rem)
+ *   • Tablet:  24px (1.5rem) desde 768px
+ *   • Desktop: 32px (2rem) desde 1024px [MÁXIMO]
+ */
+/* 
+ * container-custom: Clase centralizada para contenedores responsive
+ * Uso: <div className="container-custom">...</div>
+ * 
+ * Características:
+ * - max-width: 1536px (matching Tailwind 2xl, óptimo para pantallas modernas)
+ * - Centrado con margin: 0 auto (necesario)
+ * - Padding horizontal responsive:
+ *   • Mobile:  16px (1rem)
+ *   • Tablet:  24px (1.5rem) desde 768px
+ *   • Desktop: 32px (2rem) desde 1024px [MÁXIMO]
+ */
 
 .container-custom {
   width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
+  max-width: 1536px; /* 2xl breakpoint - mejor para pantallas modernas */
+  margin: 0 auto; /* Necesario para centrar */
   padding: 0 1rem;
 }
 
-@media (min-width: 640px) {
-  .container-custom {
-    padding: 0 1.25rem;
-  }
-}
-
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .container-custom {
     padding: 0 1.5rem;
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1024px) {
   .container-custom {
     padding: 0 2rem;
   }
@@ -65,11 +82,11 @@
 }
 
 .circle-deco-primary {
-  background: linear-gradient(135deg, var(--color-azul) 0%, var(--color-azul-light) 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
   opacity: 0.08;
 }
 
 .circle-deco-accent {
-  background: linear-gradient(135deg, var(--color-naranja) 0%, var(--color-naranja-light) 100%);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
   opacity: 0.12;
 }

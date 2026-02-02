@@ -14,7 +14,7 @@ export function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
     >
       {/* Quote icon */}
       <div className="absolute -top-4 left-6">
-        <div className="w-10 h-10 rounded-full bg-[var(--color-naranja-dai)] 
+        <div className="w-10 h-10 rounded-full bg-accent 
                        flex items-center justify-center shadow-lg">
           <IconQuote className="w-5 h-5 text-white transform rotate-180" />
         </div>
@@ -27,7 +27,7 @@ export function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
             key={i}
             className={`w-5 h-5 ${
               i < testimonial.rating 
-                ? 'text-[var(--color-naranja-dai)]' 
+                ? 'text-accent' 
                 : 'text-gray-200'
             }`}
           />
@@ -36,7 +36,7 @@ export function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
 
       {/* Content */}
       <blockquote 
-        className="text-[var(--color-gray-700)] leading-relaxed mb-6 italic"
+        className="text-gray-700 leading-relaxed mb-6 italic"
         style={{ fontFamily: 'var(--font-body)' }}
       >
         "{testimonial.content}"
@@ -47,7 +47,7 @@ export function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
         {/* Avatar placeholder */}
         <div 
           className="w-12 h-12 rounded-full flex items-center justify-center
-                     bg-gradient-to-br from-[var(--color-azul-dai)] to-[var(--color-azul-light)]
+                     bg-linear-to-br from-primary to-primary-light
                      text-white font-bold text-lg"
           style={{ fontFamily: 'var(--font-heading)' }}
         >
@@ -56,13 +56,13 @@ export function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
         
         <div>
           <p 
-            className="font-semibold text-[var(--color-azul-dai)]"
+            className="font-semibold text-primary"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
             {testimonial.name}
           </p>
           <p 
-            className="text-sm text-[var(--color-gray-500)]"
+            className="text-sm text-gray-500"
             style={{ fontFamily: 'var(--font-body)' }}
           >
             {testimonial.role}, {testimonial.organization}

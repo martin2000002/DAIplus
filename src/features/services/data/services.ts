@@ -40,8 +40,9 @@ export interface Service {
   subtitle: string;
   description: string;
   fullDescription: string;
-  icon: LucideIcon;
+  iconName: 'Users' | 'Building2' | 'GraduationCap' | 'Rocket' | 'BookOpen';
   accent: 'azul' | 'naranja';
+  headerImage: string;
   benefits?: string[];
   pillars?: ServicePillar[];
   bulletPoints?: string[];
@@ -62,8 +63,9 @@ export const services: Service[] = [
     subtitle: 'Consultoría · Asesoría · Capacitación',
     description: 'Brindamos acompañamiento especializado para fortalecer la gestión organizacional, financiera y comercial de las cooperativas.',
     fullDescription: 'Brindamos acompañamiento especializado para fortalecer la gestión organizacional, financiera y comercial de las cooperativas de ahorro y crédito, mejorar la toma de decisiones y asegurar su sostenibilidad en entornos cada vez más exigentes. Nuestro enfoque es flexible y contextualizado, considerando el tamaño, madurez institucional y entorno de cada cooperativa, con el objetivo de generar soluciones prácticas, aplicables y de alto impacto.',
-    icon: Users,
+    iconName: 'Users',
     accent: 'azul',
+    headerImage: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1920&q=80',
     pillars: [
       {
         title: 'Consultoría de alto impacto',
@@ -88,8 +90,9 @@ export const services: Service[] = [
     subtitle: 'Estrategia · Sostenibilidad · Impacto',
     description: 'Servicios orientados a fortalecer la gestión, sostenibilidad, impacto social y desempeño institucional.',
     fullDescription: 'Ofrecemos servicios de consultoría y asesoría orientados a fortalecer la gestión, sostenibilidad, impacto social y desempeño institucional de empresas, organizaciones de la Economía Popular y Solidaria, fundaciones, ONG y organizaciones de la sociedad civil. Aportamos visión estratégica, rigor técnico y enfoque práctico para convertir desafíos en oportunidades de crecimiento.',
-    icon: Building2,
+    iconName: 'Building2',
     accent: 'naranja',
+    headerImage: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80',
     bulletPoints: [
       'Definición y ejecución de estrategias organizacionales',
       'Fortalecimiento de modelos de gestión y gobernanza',
@@ -106,8 +109,9 @@ export const services: Service[] = [
     subtitle: 'Educación Financiera · Planificación',
     description: 'Espacios de capacitación y asesoría para comprender mejor las finanzas y tomar decisiones económicas más informadas.',
     fullDescription: 'Desarrollamos espacios de capacitación y asesoría dirigidos a personas que desean comprender mejor sus finanzas, organizar sus recursos y tomar decisiones económicas más informadas. Nuestro enfoque es práctico, cercano y adaptado a cada realidad, promoviendo una relación más consciente, responsable y estratégica con el dinero.',
-    icon: GraduationCap,
+    iconName: 'GraduationCap',
     accent: 'azul',
+    headerImage: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1920&q=80',
     bulletPoints: [
       'Fortalecer la educación financiera personal y familiar',
       'Mejorar la toma de decisiones económicas y de inversión',
@@ -123,8 +127,9 @@ export const services: Service[] = [
     subtitle: 'Desarrollo · Innovación · Sostenibilidad',
     description: 'Diseñamos e implementamos programas de desarrollo económico, fortalecimiento organizacional e innovación.',
     fullDescription: 'Diseñamos e implementamos programas y proyectos de desarrollo económico y ambiental, fortalecimiento organizacional, educación financiera, inclusión económica, innovación y sostenibilidad. Nuestros proyectos se alinean a objetivos estratégicos claros y cuentan con indicadores de impacto que permiten medir resultados, aprendizaje y sostenibilidad en el tiempo.',
-    icon: Rocket,
+    iconName: 'Rocket',
     accent: 'naranja',
+    headerImage: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1920&q=80',
     benefits: [
       'Desarrollo económico y ambiental',
       'Fortalecimiento organizacional',
@@ -141,8 +146,9 @@ export const services: Service[] = [
     subtitle: 'Presencial · Virtual · Híbrido',
     description: 'Cursos estructurados que permiten profundizar, reforzar y dar continuidad a los procesos de aprendizaje.',
     fullDescription: 'Además de nuestras capacitaciones corporativas, ofrecemos cursos estructurados y complementarios que permiten profundizar, reforzar y dar continuidad a los procesos de aprendizaje. Estos cursos pueden ser contratados por organizaciones o personas de forma independiente, como una extensión natural de las capacitaciones, en modalidad presencial, virtual o híbrida.',
-    icon: BookOpen,
+    iconName: 'BookOpen',
     accent: 'azul',
+    headerImage: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1920&q=80',
     courses: [
       {
         id: 1,

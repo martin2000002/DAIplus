@@ -99,7 +99,7 @@ export function TeamSection() {
       <div className="container-custom relative z-10">
         {/* Section Header */}
         <div className="team-header text-center mb-14 md:mb-20">
-          <span className="inline-block px-5 py-2 mb-5 text-sm font-semibold text-naranja bg-naranja/20 rounded-full font-heading">
+          <span className="inline-block px-5 py-2 mb-5 text-sm font-semibold text-accent bg-accent/20 rounded-full font-heading">
             Quiénes Somos
           </span>
           
@@ -117,15 +117,15 @@ export function TeamSection() {
         <div className="team-content max-w-4xl mx-auto">
           <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
             {/* Photo Container */}
-            <div className="team-photo relative flex-shrink-0">
+            <div className="team-photo relative shrink-0">
               {/* Outer decorative ring */}
               <div 
-                className="photo-ring absolute inset-0 rounded-full border-2 border-dashed border-naranja/30"
+                className="photo-ring absolute inset-0 rounded-full border-2 border-dashed border-accent/30"
                 style={{ transform: 'scale(1.15)' }}
               />
               
               {/* Photo container */}
-              <div className="relative w-52 h-52 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white/20 bg-gradient-to-br from-azul-light to-azul flex items-center justify-center">
+              <div className="relative w-52 h-52 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white/20 bg-linear-to-br from-primary-light to-primary flex items-center justify-center">
                 {/* Placeholder initials */}
                 <span className="text-7xl md:text-8xl font-bold text-white/90 font-heading">
                   DA
@@ -133,8 +133,8 @@ export function TeamSection() {
               </div>
 
               {/* Small decorative circles */}
-              <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-naranja animate-pulse" />
-              <div className="absolute -bottom-2 -left-2 w-6 h-6 rounded-full bg-azul-light" />
+              <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-accent animate-pulse" />
+              <div className="absolute -bottom-2 -left-2 w-6 h-6 rounded-full bg-primary-light" />
             </div>
 
             {/* Bio Content */}
@@ -143,7 +143,7 @@ export function TeamSection() {
                 {consultant.name}
               </h3>
               
-              <p className="text-naranja font-semibold mb-5 font-heading">
+              <p className="text-accent font-semibold mb-5 font-heading">
                 {consultant.role}
               </p>
               
@@ -155,7 +155,7 @@ export function TeamSection() {
               <ul className="space-y-3 mb-7">
                 {consultant.credentials.map((credential, i) => (
                   <li key={i} className="flex items-center gap-3 text-white/80 text-sm">
-                    <CheckCircle2 className="w-5 h-5 text-naranja flex-shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 text-accent shrink-0" />
                     <span>{credential}</span>
                   </li>
                 ))}

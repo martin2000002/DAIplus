@@ -6,7 +6,7 @@
 /* ----- Text Effects ----- */
 
 .text-gradient {
-  background: linear-gradient(135deg, var(--color-azul) 0%, var(--color-azul-light) 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -21,7 +21,7 @@
 }
 
 .glass-dark {
-  background: rgba(31, 79, 115, 0.9);
+  background: var(--color-overlay-primary);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }

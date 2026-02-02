@@ -1,77 +1,119 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+
+// Stats data
+const stats = [
+  { value: '10+', label: 'Años experiencia' },
+  { value: '50+', label: 'Organizaciones' },
+  { value: '100%', label: 'Compromiso' },
+];
 
 export function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
-  const circlesRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useGSAP(() => {
     if (!containerRef.current) return;
 
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    // Set initial states
+    gsap.set('.hero-video', { scale: 1.2, opacity: 0 });
+    gsap.set('.hero-overlay', { opacity: 0 });
+    gsap.set('.hero-logo', { y: 80, opacity: 0, scale: 0.8 });
+    gsap.set('.hero-description', { y: 30, opacity: 0 });
+    gsap.set('.hero-cta', { y: 30, opacity: 0, scale: 0.9 });
+    gsap.set('.hero-stat', { y: 40, opacity: 0 });
+    gsap.set('.hero-stat-value', { textContent: '0' });
+    gsap.set('.hero-scroll', { y: 20, opacity: 0 });
+    gsap.set('.hero-line', { scaleX: 0 });
 
-    // Main content animations
-    tl.fromTo('.hero-badge',
-      { opacity: 0, y: 20, scale: 0.9 },
-      { opacity: 1, y: 0, scale: 1, duration: 0.6 }
-    )
-    .fromTo('.hero-title-line',
-      { opacity: 0, y: 50, rotateX: -20 },
-      { opacity: 1, y: 0, rotateX: 0, duration: 0.8, stagger: 0.15 },
-      '-=0.3'
-    )
-    .fromTo('.hero-subtitle',
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.7 },
-      '-=0.4'
-    )
-    .fromTo('.hero-cta',
-      { opacity: 0, y: 20, scale: 0.95 },
-      { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.12, clearProps: 'transform' },
-      '-=0.3'
-    )
-    .fromTo('.hero-stat',
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.5, stagger: 0.1 },
-      '-=0.2'
-    )
-    .fromTo('.hero-scroll',
-      { opacity: 0, y: -10 },
-      { opacity: 1, y: 0, duration: 0.5 },
-      '-=0.1'
-    );
-
-    // Floating circles animation
-    gsap.to('.hero-circle-1', {
-      y: -30,
-      x: 10,
-      duration: 4,
-      repeat: -1,
-      yoyo: true,
-      ease: 'sine.inOut',
+    const master = gsap.timeline({ 
+      defaults: { ease: 'power4.out' },
+      delay: 0.2
     });
 
-    gsap.to('.hero-circle-2', {
-      y: 25,
-      x: -15,
-      duration: 5,
-      repeat: -1,
-      yoyo: true,
-      ease: 'sine.inOut',
+    // Phase 1: Cinematic video reveal
+    master.to('.hero-video', {
+      scale: 1,
+      opacity: 1,
+      duration: 2.5,
+      ease: 'power2.out'
+    })
+    .to('.hero-overlay', {
+      opacity: 1,
+      duration: 1.5,
+    }, '-=2')
+
+    // Phase 2: Logo reveal with scale
+    .to('.hero-logo', {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      duration: 1.2,
+      ease: 'power4.out'
+    }, '-=1.2')
+
+    // Phase 3: Description fade in
+    .to('.hero-description', {
+      y: 0,
+      opacity: 1,
+      duration: 0.8
+    }, '-=0.5')
+
+    // Phase 5: CTA buttons with pop
+    .to('.hero-cta', {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      duration: 0.6,
+      stagger: 0.12,
+      ease: 'back.out(1.7)',
+      clearProps: 'transform,scale' // Limpia transform para que CSS hover funcione
+    }, '-=0.3')
+
+    // Phase 6: Line animation
+    .to('.hero-line', {
+      scaleX: 1,
+      duration: 0.8,
+      ease: 'power2.inOut'
+    }, '-=0.2')
+
+    // Phase 7: Stats with counting animation
+    .to('.hero-stat', {
+      y: 0,
+      opacity: 1,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: 'power3.out'
+    }, '-=0.4');
+
+    // Animate stat numbers
+    const statValues = containerRef.current.querySelectorAll('.hero-stat-value');
+    statValues.forEach((el, i) => {
+      const finalValue = stats[i].value.replace(/[^0-9]/g, '');
+      const suffix = stats[i].value.replace(/[0-9]/g, '');
+      
+      master.to({}, {
+        duration: 1.5,
+        ease: 'power2.out',
+        onUpdate: function() {
+          const progress = this.progress();
+          const current = Math.round(parseFloat(finalValue) * progress);
+          el.textContent = current + suffix;
+        }
+      }, '-=0.6');
     });
 
-    gsap.to('.hero-circle-3', {
-      y: -20,
-      x: -10,
-      duration: 3.5,
-      repeat: -1,
-      yoyo: true,
-      ease: 'sine.inOut',
-    });
+    // Scroll indicator
+    master.to('.hero-scroll', {
+      y: 0,
+      opacity: 1,
+      duration: 0.6
+    }, '-=1');
 
   }, { scope: containerRef });
 
@@ -93,126 +135,99 @@ export function HeroSection() {
     <section
       ref={containerRef}
       id="inicio"
-      className="relative h-screen flex items-center justify-center overflow-hidden"
+      className="relative h-screen flex items-center overflow-hidden bg-primary-dark"
     >
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('/images/hero-background.png')`,
-        }}
-      />
+      {/* Video Background */}
+      <video
+        ref={videoRef}
+        className="hero-video absolute inset-0 w-full h-full object-cover"
+        autoPlay
+        loop
+        muted
+        playsInline
+        poster="/images/hero-background.png"
+      >
+        <source src="/videos/header.mp4" type="video/mp4" />
+      </video>
       
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-azul-dark/90 via-azul/85 to-azul-light/80" />
+      {/* linear Overlays */}
+      <div className="hero-overlay absolute inset-0 bg-linear-to-r from-primary-dark/95 via-primary-dark/70 to-primary-dark/40" />
+      <div className="hero-overlay absolute inset-0 bg-linear-to-t from-primary-dark/80 via-transparent to-primary-dark/30" />
       
-      {/* Decorative Pattern Overlay */}
-      <div 
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage: `radial-gradient(circle at 25% 25%, rgba(255,255,255,0.2) 1px, transparent 1px)`,
-          backgroundSize: '50px 50px',
-        }}
+      {/* Subtle grain texture for premium feel */}
+      <div className="absolute inset-0 opacity-[0.015] pointer-events-none" 
+        style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")' }} 
       />
 
-      {/* Decorative Circles */}
-      <div ref={circlesRef} className="absolute inset-0 pointer-events-none">
-        <div 
-          className="hero-circle-1 absolute -top-20 -right-20 w-96 h-96 rounded-full opacity-20"
-          style={{
-            background: 'radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%)',
-          }}
-        />
-        <div 
-          className="hero-circle-2 absolute bottom-20 -left-32 w-80 h-80 rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(245,166,35,0.25) 0%, transparent 70%)',
-          }}
-        />
-        <div 
-          className="hero-circle-3 absolute top-1/3 right-1/4 w-64 h-64 rounded-full opacity-15"
-          style={{
-            background: 'radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%)',
-          }}
-        />
-      </div>
+      {/* Main Content - Distribuido con flexbox */}
+      <div className="relative z-10 container-custom w-full h-full">
+        <div className="flex flex-col items-center justify-between h-full pt-24 pb-20">
+          
+          {/* Spacer superior para compensar navbar */}
+          <div className="shrink-0" />
+          
+          {/* Contenido Principal - Centrado */}
+          <div className="flex flex-col items-center justify-center text-center flex-1">
+            {/* Logo - Tamaño dinámico con clamp */}
+            <div className="hero-logo mb-6 md:mb-8 will-change-transform w-full flex items-center justify-center">
+              <Image
+                src="/images/logo.png"
+                alt="DAI+ - Estrategia e Innovación"
+                width={400}
+                height={160}
+                className="w-auto h-auto max-h-[22vh] md:max-h-[25vh] lg:max-h-[28vh] brightness-0 invert object-contain"
+                priority
+                unoptimized
+              />
+            </div>
 
-      {/* Main Content */}
-      <div className="relative z-10 container-custom pt-20 pb-16 md:pt-24 md:pb-20">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          <div className="hero-badge inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
-            <div className="w-2 h-2 rounded-full bg-naranja animate-pulse" />
-            <span className="text-sm font-medium text-white/90 tracking-wide font-heading">
-              Estrategia e Innovación
-            </span>
+            {/* Description */}
+            <p className="hero-description text-sm md:text-base lg:text-lg text-white/90 mb-6 md:mb-8 max-w-xl mx-auto leading-relaxed px-4">
+              Impulsamos a personas y organizaciones a construir el futuro que desean liderar, integrando estrategia e innovación.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4">
+              <button
+                onClick={handleCTAClick}
+                className="hero-cta btn btn-primary btn-md md:btn-lg group"
+              >
+                Agendar Cita
+                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:translate-x-1" />
+              </button>
+              
+              <button
+                onClick={handleServicesClick}
+                className="hero-cta btn btn-outline btn-md md:btn-lg"
+              >
+                Explorar Servicios
+              </button>
+            </div>
           </div>
 
-          {/* Main Title */}
-          <h1 className="text-white mb-4" style={{ perspective: '1000px' }}>
-            <span className="hero-title-line text-white block text-6xl md:text-7xl lg:text-8xl font-bold font-heading tracking-tight">
-              DAI<span className="text-naranja">+</span>
-            </span>
-            <span className="hero-title-line block text-lg md:text-xl lg:text-2xl font-medium text-white/90 mt-3">
-              Estrategia e Innovación
-            </span>
-          </h1>
-
-          {/* Subtitle */}
-          <p className="hero-subtitle text-base md:text-lg text-white/85 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Transformamos la forma de pensar, decidir y actuar de las organizaciones 
-            para generar impacto real y sostenible.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
-            <button
-              onClick={handleCTAClick}
-              className="hero-cta btn btn-primary btn-md group"
-            >
-              Agenda una Consulta
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </button>
+          {/* Stats Section - Parte inferior */}
+          <div className="shrink-0 w-full mt-auto pt-6">
+            {/* Animated line */}
+            <div className="hero-line h-px bg-linear-to-r from-transparent via-white/20 to-transparent max-w-2xl mx-auto mb-4 md:mb-6 origin-center" />
             
-            <button
-              onClick={handleServicesClick}
-              className="hero-cta btn btn-outline btn-md"
-            >
-              Explorar Servicios
-            </button>
-          </div>
-
-          {/* Stats */}
-          <div className="pt-6 border-t border-white/10 grid grid-cols-3 gap-4 md:gap-8 max-w-xl mx-auto">
-            <div className="hero-stat text-center">
-              <div className="text-2xl md:text-3xl font-bold text-naranja font-heading">
-                10+
-              </div>
-              <div className="text-xs md:text-sm text-white/70 mt-1">Años experiencia</div>
-            </div>
-            <div className="hero-stat text-center">
-              <div className="text-2xl md:text-3xl font-bold text-naranja font-heading">
-                50+
-              </div>
-              <div className="text-xs md:text-sm text-white/70 mt-1">Organizaciones</div>
-            </div>
-            <div className="hero-stat text-center">
-              <div className="text-2xl md:text-3xl font-bold text-naranja font-heading">
-                100%
-              </div>
-              <div className="text-xs md:text-sm text-white/70 mt-1">Compromiso</div>
+            <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-lg md:max-w-xl mx-auto">
+              {stats.map((stat, index) => (
+                <div key={index} className="hero-stat text-center">
+                  <div className="hero-stat-value text-xl md:text-2xl lg:text-3xl font-bold text-accent font-heading tabular-nums">
+                    {stat.value}
+                  </div>
+                  <div className="text-[10px] md:text-xs text-white/40 mt-1 uppercase tracking-wider">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="hero-scroll absolute bottom-6 left-1/2 -translate-x-1/2">
-        <div className="flex flex-col items-center gap-1 text-white/50">
-          <span className="text-xs font-medium tracking-widest uppercase">Scroll</span>
-          <ChevronDown className="w-4 h-4 animate-bounce" />
-        </div>
-      </div>
+      {/* Bottom linear fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-primary-dark to-transparent pointer-events-none" />
     </section>
   );
 }

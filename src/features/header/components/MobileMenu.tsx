@@ -104,8 +104,8 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                         }, 300);
                       }
                     }}
-                    className="block px-4 py-3 text-lg font-medium text-[var(--color-gray-700)] rounded-lg 
-                             hover:bg-[var(--color-azul-dai)] hover:text-white transition-colors"
+                    className="block px-4 py-3 text-lg font-medium text-gray-700 rounded-lg 
+                             hover:bg-primary hover:text-white transition-colors"
                     style={{ fontFamily: 'var(--font-heading)' }}
                   >
                     {item.label}
@@ -146,8 +146,8 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 }, 300);
               }}
               className="block w-full py-3 text-center font-semibold text-white 
-                       bg-[var(--color-naranja-dai)] rounded-full 
-                       hover:bg-[var(--color-naranja-dark)] transition-colors"
+                       bg-accent rounded-full 
+                       hover:bg-accent-dark transition-colors"
               style={{ fontFamily: 'var(--font-heading)' }}
             >
               Agendar Consultoría
@@ -157,7 +157,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           {/* Contact Info */}
           <div 
             className={cn(
-              'pt-6 text-center text-sm text-[var(--color-gray-500)] opacity-0',
+              'pt-6 text-center text-sm text-gray-500 opacity-0',
               isOpen && 'animate-fade-in'
             )}
             style={{ 

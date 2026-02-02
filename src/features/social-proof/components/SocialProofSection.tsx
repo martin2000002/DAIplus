@@ -94,11 +94,11 @@ export function SocialProofSection() {
       <div className="container-custom">
         {/* Section Header */}
         <div className="social-header text-center mb-12 md:mb-16">
-          <span className="inline-block px-5 py-2 mb-5 text-sm font-semibold text-naranja bg-naranja/10 rounded-full font-heading">
+          <span className="inline-block px-5 py-2 mb-5 text-sm font-semibold text-accent bg-accent/10 rounded-full font-heading">
             Resultados Comprobados
           </span>
           
-          <h2 className="heading-lg text-azul mb-5 font-heading">
+          <h2 className="heading-lg text-primary mb-5 font-heading">
             Organizaciones que Confían en Nosotros
           </h2>
         </div>
@@ -107,15 +107,15 @@ export function SocialProofSection() {
         <div className="w-full overflow-hidden py-8 mb-16">
           <div className="relative">
             {/* Gradient masks */}
-            <div className="absolute left-0 top-0 bottom-0 w-20 md:w-40 bg-gradient-to-r from-white to-transparent z-10" />
-            <div className="absolute right-0 top-0 bottom-0 w-20 md:w-40 bg-gradient-to-l from-white to-transparent z-10" />
+            <div className="absolute left-0 top-0 bottom-0 w-20 md:w-40 bg-linear-to-r from-white to-transparent z-10" />
+            <div className="absolute right-0 top-0 bottom-0 w-20 md:w-40 bg-linear-to-l from-white to-transparent z-10" />
             
             {/* Scrolling container */}
             <div className="logo-slider-track">
               {[...logos, ...logos].map((logo, index) => (
                 <div
                   key={`${logo.id}-${index}`}
-                  className="flex-shrink-0 mx-6 md:mx-10"
+                  className="shrink-0 mx-6 md:mx-10"
                 >
                   <div className="w-32 h-20 md:w-40 md:h-24 flex items-center justify-center rounded-xl bg-white shadow-sm border border-gray-100 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300 cursor-pointer">
                     <div className="flex flex-col items-center">
@@ -134,8 +134,8 @@ export function SocialProofSection() {
         </div>
 
         {/* Testimonials Header */}
-        <h3 className="heading-md text-center text-azul mb-10 md:mb-14 font-heading">
-          Lo Que Dicen Nuestros Clientes
+        <h3 className="heading-md text-center text-primary mb-10 md:mb-14 font-heading">
+          Lo Que Dicen de Nosotros
         </h3>
         
         {/* Testimonials Grid */}
@@ -147,7 +147,7 @@ export function SocialProofSection() {
             >
               {/* Quote icon */}
               <div className="absolute -top-4 left-7">
-                <div className="w-10 h-10 rounded-full bg-naranja flex items-center justify-center shadow-lg">
+                <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center shadow-lg">
                   <Quote className="w-5 h-5 text-white" />
                 </div>
               </div>
@@ -159,7 +159,7 @@ export function SocialProofSection() {
                     key={i}
                     className={`w-5 h-5 ${
                       i < testimonial.rating 
-                        ? 'text-naranja fill-naranja' 
+                        ? 'text-accent fill-accent' 
                         : 'text-gray-200'
                     }`}
                   />
@@ -168,17 +168,17 @@ export function SocialProofSection() {
 
               {/* Content */}
               <blockquote className="text-gray-700 leading-relaxed mb-6 italic">
-                "{testimonial.content}"
+                &quot;{testimonial.content}&quot;
               </blockquote>
 
               {/* Author */}
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-azul to-azul-light text-white font-bold text-lg font-heading">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center bg-linear-to-br from-primary to-primary-light text-white font-bold text-lg font-heading">
                   {testimonial.name.charAt(0)}
                 </div>
                 
                 <div>
-                  <p className="font-semibold text-azul font-heading">
+                  <p className="font-semibold text-primary font-heading">
                     {testimonial.name}
                   </p>
                   <p className="text-sm text-gray-500">

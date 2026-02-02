@@ -1,4 +1,14 @@
+import { Users, Building2, GraduationCap, Rocket, BookOpen } from 'lucide-react';
 import { Service } from '../data/services';
+
+// Map icon names to components
+const iconMap = {
+  Users,
+  Building2,
+  GraduationCap,
+  Rocket,
+  BookOpen,
+};
 
 interface ServiceCardProps {
   service: Service;
@@ -6,7 +16,7 @@ interface ServiceCardProps {
 }
 
 export function ServiceCard({ service, index }: ServiceCardProps) {
-  const Icon = service.icon;
+  const Icon = iconMap[service.iconName];
   const isEven = index % 2 === 0;
   
   return (
@@ -19,8 +29,8 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
       <div 
         className={`h-1.5 w-full ${
           isEven 
-            ? 'bg-gradient-to-r from-[var(--color-azul-dai)] to-[var(--color-azul-light)]'
-            : 'bg-gradient-to-r from-[var(--color-naranja-dai)] to-[var(--color-naranja-light)]'
+            ? 'bg-linear-to-r from-primary to-primary-light'
+            : 'bg-linear-to-r from-accent to-accent-light'
         }`}
       />
       
@@ -28,11 +38,11 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
         {/* Icon & Title */}
         <div className="flex items-start gap-4 mb-5">
           <div 
-            className={`flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center
+            className={`shrink-0 w-14 h-14 rounded-xl flex items-center justify-center
                        group-hover:scale-110 transition-transform duration-300 ${
               isEven 
-                ? 'bg-[var(--color-azul-dai)]/10 text-[var(--color-azul-dai)]'
-                : 'bg-[var(--color-naranja-dai)]/10 text-[var(--color-naranja-dai)]'
+                ? 'bg-primary/10 text-primary'
+                : 'bg-accent/10 text-accent'
             }`}
           >
             <Icon className="w-7 h-7" />
@@ -41,14 +51,14 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
           <div>
             <span 
               className={`text-xs font-semibold uppercase tracking-wider ${
-                isEven ? 'text-[var(--color-azul-light)]' : 'text-[var(--color-naranja-dai)]'
+                isEven ? 'text-primary-light' : 'text-accent'
               }`}
               style={{ fontFamily: 'var(--font-heading)' }}
             >
               {service.subtitle}
             </span>
             <h3 
-              className="text-xl font-bold text-[var(--color-azul-dai)] mt-1"
+              className="text-xl font-bold text-primary mt-1"
               style={{ fontFamily: 'var(--font-heading)' }}
             >
               {service.title}
@@ -58,7 +68,7 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
 
         {/* Description */}
         <p 
-          className="text-[var(--color-gray-600)] mb-6 leading-relaxed"
+          className="text-gray-600 mb-6 leading-relaxed"
           style={{ fontFamily: 'var(--font-body)' }}
         >
           {service.description}
@@ -67,10 +77,10 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
         {/* Benefits */}
         <ul className="space-y-2">
           {service.benefits?.map((benefit, i) => (
-            <li key={i} className="flex items-center gap-2 text-sm text-[var(--color-gray-700)]">
+            <li key={i} className="flex items-center gap-2 text-sm text-gray-700">
               <svg 
-                className={`w-4 h-4 flex-shrink-0 ${
-                  isEven ? 'text-[var(--color-azul-dai)]' : 'text-[var(--color-naranja-dai)]'
+                className={`w-4 h-4 shrink-0 ${
+                  isEven ? 'text-primary' : 'text-accent'
                 }`}
                 viewBox="0 0 20 20" 
                 fill="currentColor"
@@ -91,8 +101,8 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
           className={`absolute inset-0 opacity-0 group-hover:opacity-5 
                      transition-opacity duration-500 pointer-events-none ${
             isEven 
-              ? 'bg-gradient-to-br from-[var(--color-azul-dai)] to-transparent'
-              : 'bg-gradient-to-br from-[var(--color-naranja-dai)] to-transparent'
+              ? 'bg-linear-to-br from-primary to-transparent'
+              : 'bg-linear-to-br from-accent to-transparent'
           }`}
         />
       </div>

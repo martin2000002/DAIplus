@@ -19,7 +19,7 @@ export function InsightCard({ insight, index }: InsightCardProps) {
       <div className="mb-5">
         <div 
           className="inline-flex items-center justify-center w-14 h-14 rounded-full
-                     bg-gradient-to-br from-[var(--color-azul-dai)] to-[var(--color-azul-light)]
+                     bg-linear-to-br from-accent-light to-accent-dark
                      group-hover:scale-110 transition-transform duration-300"
         >
           <Icon className="w-7 h-7 text-white" />
@@ -28,14 +28,14 @@ export function InsightCard({ insight, index }: InsightCardProps) {
 
       {/* Content */}
       <h3 
-        className="text-lg md:text-xl font-bold text-[var(--color-azul-dai)] mb-3"
+        className="text-lg md:text-xl font-bold text-primary mb-3"
         style={{ fontFamily: 'var(--font-heading)' }}
       >
         {insight.title}
       </h3>
       
       <p 
-        className="text-[var(--color-gray-600)] leading-relaxed"
+        className="text-gray-600 leading-relaxed"
         style={{ fontFamily: 'var(--font-body)' }}
       >
         {insight.description}
@@ -44,7 +44,7 @@ export function InsightCard({ insight, index }: InsightCardProps) {
       {/* Decorative accent */}
       <div 
         className="absolute bottom-0 left-0 right-0 h-1 rounded-b-2xl 
-                   bg-gradient-to-r from-[var(--color-azul-dai)] to-[var(--color-naranja-dai)]
+                   bg-linear-to-r from-primary to-accent
                    transform scale-x-0 group-hover:scale-x-100 
                    transition-transform duration-300 origin-left"
       />

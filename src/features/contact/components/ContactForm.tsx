@@ -128,7 +128,7 @@ export function ContactForm() {
       </button>
 
       <p 
-        className="text-xs text-center text-[var(--color-gray-500)]"
+        className="text-xs text-center text-gray-500"
         style={{ fontFamily: 'var(--font-body)' }}
       >
         * Campos requeridos. Tu información será tratada con confidencialidad.

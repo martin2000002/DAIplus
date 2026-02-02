@@ -5,12 +5,21 @@ import Link from 'next/link';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { ArrowLeft, ArrowRight, CheckCircle2, BookOpen, Sparkles } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, BookOpen, Sparkles, Users, Building2, GraduationCap, Rocket } from 'lucide-react';
 import { type Service } from '../data/services';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
+
+// Map icon names to components
+const iconMap = {
+  Users,
+  Building2,
+  GraduationCap,
+  Rocket,
+  BookOpen,
+};
 
 interface ServiceDetailPageProps {
   service: Service;
@@ -18,7 +27,7 @@ interface ServiceDetailPageProps {
 
 export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
   const pageRef = useRef<HTMLDivElement>(null);
-  const Icon = service.icon;
+  const Icon = iconMap[service.iconName];
   const isAzul = service.accent === 'azul';
 
   useGSAP(() => {
@@ -58,78 +67,73 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
 
   return (
     <div ref={pageRef} className="min-h-screen">
-      {/* Hero Section */}
-      <section className={`relative py-24 md:py-32 ${
-        isAzul ? 'bg-gradient-to-br from-azul-dark via-azul to-azul-light' : 'bg-gradient-to-br from-naranja-dark via-naranja to-naranja-light'
-      }`}>
-        {/* Decorative Pattern */}
+      {/* Hero Section with Background Image - Full bleed, overlays behind navbar */}
+      <section className="relative h-[55vh] min-h-[400px] max-h-[500px] overflow-hidden">
+        {/* Background Image */}
         <div 
-          className="absolute inset-0 opacity-10"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `radial-gradient(circle at 25% 25%, rgba(255,255,255,0.2) 1px, transparent 1px)`,
-            backgroundSize: '50px 50px',
+            backgroundImage: `url('${service.headerImage}')`,
           }}
         />
+        
+        {/* Gradient Overlay - Always dark enough for white text */}
+        <div className="absolute inset-0 bg-linear-to-r from-primary-dark/95 via-primary/85 to-primary-dark/80" />
 
-        <div className="container-custom relative z-10">
+        <div className="container-custom relative z-10 h-full flex flex-col justify-center pt-20">
           {/* Back Link */}
           <Link 
             href="/#servicios" 
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 hover:bg-white/30 text-white font-medium mb-8 transition-all font-heading text-sm backdrop-blur-sm"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 hover:bg-white/30 text-white font-medium transition-all font-heading text-sm backdrop-blur-sm w-fit mb-6"
           >
             <ArrowLeft className="w-4 h-4" />
             Volver a Servicios
           </Link>
 
-          <div className="service-hero-content max-w-4xl">
-            {/* Icon */}
-            <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-6 ${
-              isAzul ? 'bg-white/20' : 'bg-white/20'
-            }`}>
-              <Icon className="w-8 h-8 text-white" />
-            </div>
-
-            {/* Subtitle */}
-            <span className="inline-block px-4 py-1.5 mb-4 text-sm font-semibold text-white/90 bg-white/10 rounded-full font-heading">
-              {service.subtitle}
-            </span>
-
-            {/* Title */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 font-heading leading-tight">
+          <div className="service-hero-content">
+            {/* Title Only - forced white color */}
+            <h1 
+              className="text-3xl md:text-4xl lg:text-5xl font-bold font-heading leading-tight drop-shadow-lg"
+              style={{ color: 'white' }}
+            >
               {service.title}
             </h1>
-
-            {/* Description */}
-            <p className="text-lg md:text-xl text-white/90 leading-relaxed max-w-3xl">
-              {service.fullDescription}
-            </p>
           </div>
         </div>
       </section>
 
-      {/* Content Sections */}
-      <section className="service-sections py-16 md:py-24 bg-white">
+      {/* Description Section - First paragraph below hero */}
+      <section className="py-10 md:py-14 bg-white border-b border-gray-100">
         <div className="container-custom">
-          <div className="max-w-4xl mx-auto space-y-16">
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+              {service.fullDescription}
+            </p>
+        </div>
+      </section>
+
+      {/* Content Sections */}
+      <section className="service-sections py-12 md:py-20 bg-white">
+        <div className="container-custom">
+          <div className="space-y-16">
 
             {/* Pillars Section (for cooperativas) */}
             {service.pillars && (
               <div className="service-section">
-                <h2 className="text-2xl md:text-3xl font-bold text-azul mb-8 font-heading">
+                <h2 className="text-2xl md:text-3xl font-bold text-primary mb-8 font-heading">
                   Nuestros Pilares de Servicio
                 </h2>
                 <div className="grid gap-6">
                   {service.pillars.map((pillar, index) => (
                     <div 
                       key={index}
-                      className="card p-6 md:p-8 border-l-4 border-azul"
+                      className="card p-6 md:p-8 border-l-4 border-primary"
                     >
                       <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-azul/10 flex items-center justify-center">
-                          <span className="text-azul font-bold font-heading">{index + 1}</span>
+                        <div className="shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                          <span className="text-primary font-bold font-heading">{index + 1}</span>
                         </div>
                         <div>
-                          <h3 className="text-lg font-bold text-azul mb-2 font-heading">
+                          <h3 className="text-lg font-bold text-primary mb-2 font-heading">
                             {pillar.title}
                           </h3>
                           <p className="text-gray-600 leading-relaxed">
@@ -142,9 +146,9 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
                 </div>
                 
                 {service.philosophy && (
-                  <div className="mt-8 p-6 rounded-2xl bg-gradient-to-r from-azul/5 to-naranja/5 border border-azul/10">
+                  <div className="mt-8 p-6 rounded-2xl bg-linear-to-r from-primary/5 to-accent/5 border border-primary/10">
                     <div className="flex items-start gap-4">
-                      <Sparkles className="w-6 h-6 text-naranja flex-shrink-0 mt-1" />
+                      <Sparkles className="w-6 h-6 text-accent shrink-0 mt-1" />
                       <p className="text-gray-700 italic leading-relaxed">
                         {service.philosophy}
                       </p>
@@ -157,17 +161,17 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
             {/* Bullet Points Section (for empresas, personas) */}
             {service.bulletPoints && (
               <div className="service-section">
-                <h2 className="text-2xl md:text-3xl font-bold text-azul mb-8 font-heading">
+                <h2 className="text-2xl md:text-3xl font-bold text-primary mb-8 font-heading">
                   Áreas de Acompañamiento
                 </h2>
                 <div className="grid gap-4">
                   {service.bulletPoints.map((point, index) => (
                     <div 
                       key={index}
-                      className="flex items-start gap-4 p-4 rounded-xl bg-gray-50 hover:bg-azul/5 transition-colors"
+                      className="flex items-start gap-4 p-4 rounded-xl bg-gray-50 hover:bg-primary/5 transition-colors"
                     >
-                      <CheckCircle2 className={`w-6 h-6 flex-shrink-0 ${
-                        isAzul ? 'text-azul' : 'text-naranja'
+                      <CheckCircle2 className={`w-6 h-6 shrink-0 ${
+                        isAzul ? 'text-primary' : 'text-accent'
                       }`} />
                       <span className="text-gray-700 font-medium">{point}</span>
                     </div>
@@ -179,16 +183,16 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
             {/* Benefits Section (for programas) */}
             {service.benefits && (
               <div className="service-section">
-                <h2 className="text-2xl md:text-3xl font-bold text-azul mb-8 font-heading">
+                <h2 className="text-2xl md:text-3xl font-bold text-primary mb-8 font-heading">
                   Áreas de Enfoque
                 </h2>
                 <div className="grid md:grid-cols-2 gap-4">
                   {service.benefits.map((benefit, index) => (
                     <div 
                       key={index}
-                      className="flex items-center gap-4 p-5 rounded-xl bg-naranja/5 border border-naranja/10"
+                      className="flex items-center gap-4 p-5 rounded-xl bg-accent/5 border border-accent/10"
                     >
-                      <div className="w-3 h-3 rounded-full bg-naranja" />
+                      <div className="w-3 h-3 rounded-full bg-accent" />
                       <span className="text-gray-700 font-medium">{benefit}</span>
                     </div>
                   ))}
@@ -199,7 +203,7 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
             {/* Courses Section (for cursos) */}
             {service.courses && (
               <div className="service-section">
-                <h2 className="text-2xl md:text-3xl font-bold text-azul mb-8 font-heading">
+                <h2 className="text-2xl md:text-3xl font-bold text-primary mb-8 font-heading">
                   Portafolio de Cursos
                 </h2>
                 <div className="grid gap-6">
@@ -209,11 +213,11 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
                       className="card p-6 group hover:shadow-lg transition-shadow"
                     >
                       <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-azul to-azul-light flex items-center justify-center">
+                        <div className="shrink-0 w-12 h-12 rounded-xl bg-linear-to-br from-primary to-primary-light flex items-center justify-center">
                           <BookOpen className="w-6 h-6 text-white" />
                         </div>
                         <div>
-                          <h3 className="text-lg font-bold text-azul mb-2 font-heading group-hover:text-naranja transition-colors">
+                          <h3 className="text-lg font-bold text-primary mb-2 font-heading group-hover:text-accent transition-colors">
                             {course.title}
                           </h3>
                           <p className="text-gray-600 leading-relaxed">
@@ -230,7 +234,7 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
             {/* CTA Section */}
             <div className="service-section pt-8 border-t border-gray-100">
               <div className="text-center">
-                <h3 className="text-xl md:text-2xl font-bold text-azul mb-4 font-heading">
+                <h3 className="text-xl md:text-2xl font-bold text-primary mb-4 font-heading">
                   ¿Interesado en este servicio?
                 </h3>
                 <p className="text-gray-600 mb-8 max-w-xl mx-auto">
@@ -246,7 +250,7 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
                   </Link>
                   <Link
                     href="/#servicios"
-                    className="btn btn-lg bg-azul/10 text-azul hover:bg-azul hover:text-white transition-colors"
+                    className="btn btn-lg bg-primary/10 text-primary hover:bg-primary hover:text-white transition-colors"
                   >
                     Ver otros servicios
                   </Link>

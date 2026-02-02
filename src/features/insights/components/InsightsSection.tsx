@@ -75,11 +75,11 @@ export function InsightsSection() {
       <div className="container-custom relative z-10">
         {/* Section Header */}
         <div className="text-center mb-14 md:mb-20">
-          <span className="insights-badge inline-block px-5 py-2 mb-5 text-sm font-semibold text-naranja bg-naranja/10 rounded-full font-heading">
+          <span className="insights-badge inline-block px-5 py-2 mb-5 text-sm font-semibold text-accent bg-accent/10 rounded-full font-heading">
             Nuestro Enfoque
           </span>
           
-          <h2 className="insights-title heading-lg text-azul mb-5 font-heading">
+          <h2 className="insights-title heading-lg text-primary mb-5 font-heading">
             Enfoque Estratégico
           </h2>
           
@@ -100,13 +100,13 @@ export function InsightsSection() {
               >
                 {/* Icon */}
                 <div className="mb-6">
-                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-azul to-azul-light group-hover:scale-110 transition-transform duration-300">
+                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-linear-to-br from-primary to-primary-light group-hover:scale-110 transition-transform duration-300">
                     <Icon className="w-7 h-7 text-white" />
                   </div>
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl font-bold text-azul mb-3 font-heading">
+                <h3 className="text-xl font-bold text-primary mb-3 font-heading">
                   {insight.title}
                 </h3>
                 
@@ -115,7 +115,7 @@ export function InsightsSection() {
                 </p>
 
                 {/* Bottom accent line */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 rounded-b-2xl bg-gradient-to-r from-azul to-naranja transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <div className="absolute bottom-0 left-0 right-0 h-1 rounded-b-2xl bg-linear-to-r from-primary to-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </div>
             );
           })}
@@ -132,13 +132,13 @@ export function InsightsSection() {
               >
                 {/* Icon */}
                 <div className="mb-6">
-                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-azul to-azul-light group-hover:scale-110 transition-transform duration-300">
+                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-linear-to-br from-primary to-primary-light group-hover:scale-110 transition-transform duration-300">
                     <Icon className="w-7 h-7 text-white" />
                   </div>
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl font-bold text-azul mb-3 font-heading">
+                <h3 className="text-xl font-bold text-primary mb-3 font-heading">
                   {insight.title}
                 </h3>
                 
@@ -147,7 +147,7 @@ export function InsightsSection() {
                 </p>
 
                 {/* Bottom accent line */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 rounded-b-2xl bg-gradient-to-r from-azul to-naranja transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <div className="absolute bottom-0 left-0 right-0 h-1 rounded-b-2xl bg-linear-to-r from-primary to-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </div>
             );
           })}

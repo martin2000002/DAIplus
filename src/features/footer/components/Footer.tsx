@@ -23,7 +23,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-azul-dark text-white">
+    <footer className="bg-primary-dark text-white">
       {/* Main Footer Content */}
       <div className="py-14 md:py-20">
         <div className="container-custom">
@@ -35,7 +35,7 @@ export function Footer() {
                 <span className="text-3xl font-bold tracking-tight text-white font-heading">
                   DAI
                 </span>
-                <span className="text-3xl font-bold text-naranja font-heading">
+                <span className="text-3xl font-bold text-accent font-heading">
                   +
                 </span>
               </div>
@@ -52,7 +52,7 @@ export function Footer() {
                   href="https://linkedin.com/in/diego-andrade"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-naranja transition-colors"
+                  className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="w-5 h-5" />
@@ -61,7 +61,7 @@ export function Footer() {
                   href="https://facebook.com/daiplus"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-naranja transition-colors"
+                  className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors"
                   aria-label="Facebook"
                 >
                   <Facebook className="w-5 h-5" />
@@ -80,7 +80,7 @@ export function Footer() {
                     <a
                       href={link.href}
                       onClick={(e) => handleNavClick(e, link.href)}
-                      className="text-white/70 hover:text-naranja transition-colors"
+                      className="text-white/70 hover:text-accent transition-colors"
                     >
                       {link.label}
                     </a>
@@ -98,22 +98,22 @@ export function Footer() {
               <div className="space-y-4 mb-7">
                 <a
                   href="mailto:dandradei@outlook.es"
-                  className="flex items-center gap-3 text-white/70 hover:text-naranja transition-colors"
+                  className="flex items-center gap-3 text-white/70 hover:text-accent transition-colors"
                 >
-                  <Mail className="w-5 h-5 flex-shrink-0" />
+                  <Mail className="w-5 h-5 shrink-0" />
                   <span className="text-sm">dandradei@outlook.es</span>
                 </a>
                 
                 <a
                   href="tel:+593998711386"
-                  className="flex items-center gap-3 text-white/70 hover:text-naranja transition-colors"
+                  className="flex items-center gap-3 text-white/70 hover:text-accent transition-colors"
                 >
-                  <Phone className="w-5 h-5 flex-shrink-0" />
+                  <Phone className="w-5 h-5 shrink-0" />
                   <span className="text-sm">+593 998 711 386</span>
                 </a>
                 
                 <div className="flex items-center gap-3 text-white/70">
-                  <MapPin className="w-5 h-5 flex-shrink-0" />
+                  <MapPin className="w-5 h-5 shrink-0" />
                   <span className="text-sm">Quito - Ecuador</span>
                 </div>
               </div>

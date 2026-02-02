@@ -9,6 +9,8 @@ const navItems = [
   { label: 'Inicio', href: '#inicio' },
   { label: 'Enfoque', href: '#enfoque' },
   { label: 'Servicios', href: '#servicios' },
+  { label: 'Artículos', href: '#articulos' },
+  { label: 'Actividades', href: '#eventos' },
   { label: 'Nosotros', href: '#nosotros' },
   { label: 'Contacto', href: '#contacto' },
 ];
@@ -86,17 +88,21 @@ export function Header({ forceScrolled = false }: HeaderProps) {
             <a 
               href="#inicio" 
               onClick={(e) => handleNavClick(e, '#inicio')}
-              className="relative z-10 flex items-center"
+              className={cn(
+                "relative z-10 flex items-center transition-all duration-300",
+                showScrolledStyle ? '' : 'pointer-events-none'
+              )}
               aria-label="DAI+ - Ir al inicio"
+              tabIndex={showScrolledStyle ? 0 : -1}
             >
               <Image
-                src="/images/logo-compact.png"
+                src="/images/logo.png"
                 alt="DAI+ Logo"
                 width={120}
                 height={40}
                 className={cn(
                   "h-8 md:h-10 w-auto transition-all duration-300",
-                  showScrolledStyle ? '' : 'brightness-0 invert'
+                  showScrolledStyle ? 'opacity-100' : 'opacity-0'
                 )}
                 priority
               />
@@ -111,7 +117,7 @@ export function Header({ forceScrolled = false }: HeaderProps) {
                   onClick={(e) => handleNavClick(e, item.href)}
                   className={cn(
                     "px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 font-heading",
-                    "hover:bg-naranja hover:text-white",
+                    "hover:bg-accent hover:text-white",
                     showScrolledStyle
                       ? 'text-gray-700'
                       : 'text-white/90'
@@ -125,7 +131,7 @@ export function Header({ forceScrolled = false }: HeaderProps) {
                 onClick={(e) => handleNavClick(e, '#contacto')}
                 className="ml-2 btn btn-primary btn-sm"
               >
-                Agendar
+                Agendar Cita
               </a>
             </nav>
 
@@ -135,7 +141,7 @@ export function Header({ forceScrolled = false }: HeaderProps) {
               className={cn(
                 "lg:hidden p-2.5 rounded-xl transition-colors",
                 showScrolledStyle 
-                  ? 'text-azul hover:bg-azul/10' 
+                  ? 'text-primary hover:bg-primary/10' 
                   : 'text-white hover:bg-white/10'
               )}
               aria-label={isMobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
@@ -188,7 +194,7 @@ export function Header({ forceScrolled = false }: HeaderProps) {
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
                     className="block px-4 py-3.5 text-lg font-semibold text-gray-700 rounded-xl 
-                             hover:bg-azul hover:text-white transition-colors font-heading"
+                             hover:bg-primary hover:text-white transition-colors font-heading"
                   >
                     {item.label}
                   </a>
