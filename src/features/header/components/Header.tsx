@@ -2,17 +2,18 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 
 const navItems = [
-  { label: 'Inicio', href: '#inicio' },
-  { label: 'Enfoque', href: '#enfoque' },
-  { label: 'Servicios', href: '#servicios' },
-  { label: 'Artículos', href: '#articulos' },
-  { label: 'Actividades', href: '#eventos' },
-  { label: 'Nosotros', href: '#nosotros' },
-  { label: 'Contacto', href: '#contacto' },
+  { label: 'Inicio', href: '/#inicio' },
+  { label: 'Enfoque', href: '/#enfoque' },
+  { label: 'Servicios', href: '/#servicios' },
+  { label: 'Biblioteca', href: '/#biblioteca' },
+  { label: 'Eventos', href: '/#eventos' },
+  { label: 'Nosotros', href: '/#nosotros' },
+  { label: 'Contacto', href: '/#contacto' },
 ];
 
 interface HeaderProps {
@@ -55,17 +56,23 @@ export function Header({ forceScrolled = false }: HeaderProps) {
     };
   }, [isMobileMenuOpen]);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    setIsMobileMenuOpen(false);
-    
-    const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
-    
-    if (element) {
-      setTimeout(() => {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }, isMobileMenuOpen ? 300 : 0);
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLElement>, href: string) => {
+    const targetId = href.replace('/#', '').replace('#', '');
+    const isHome = window.location.pathname === '/';
+
+    // If we're on the homepage, scroll smoothly
+    if (isHome) {
+      e.preventDefault();
+      setIsMobileMenuOpen(false);
+      const element = document.getElementById(targetId);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, isMobileMenuOpen ? 300 : 0);
+      }
+    } else {
+      // On sub-pages, navigate to home + hash (browser handles the anchor)
+      setIsMobileMenuOpen(false);
     }
   };
 
@@ -85,9 +92,10 @@ export function Header({ forceScrolled = false }: HeaderProps) {
         <div className="container-custom">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <a 
-              href="#inicio" 
-              onClick={(e) => handleNavClick(e, '#inicio')}
+            <Link 
+              href="/#inicio" 
+              scroll={false}
+              onClick={(e) => handleNavClick(e, '/#inicio')}
               className={cn(
                 "relative z-10 flex items-center transition-all duration-300",
                 showScrolledStyle ? '' : 'pointer-events-none'
@@ -106,14 +114,15 @@ export function Header({ forceScrolled = false }: HeaderProps) {
                 )}
                 priority
               />
-            </a>
+            </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-1">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.href}
                   href={item.href}
+                  scroll={false}
                   onClick={(e) => handleNavClick(e, item.href)}
                   className={cn(
                     "px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 font-heading",
@@ -124,15 +133,16 @@ export function Header({ forceScrolled = false }: HeaderProps) {
                   )}
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
-              <a
-                href="#contacto"
-                onClick={(e) => handleNavClick(e, '#contacto')}
+              <Link
+                href="/#contacto"
+                scroll={false}
+                onClick={(e) => handleNavClick(e, '/#contacto')}
                 className="ml-2 btn btn-primary btn-sm"
               >
                 Agendar Cita
-              </a>
+              </Link>
             </nav>
 
             {/* Mobile Menu Button */}
@@ -190,14 +200,15 @@ export function Header({ forceScrolled = false }: HeaderProps) {
                     transitionDelay: isMobileMenuOpen ? `${index * 50}ms` : '0ms'
                   }}
                 >
-                  <a
+                  <Link
                     href={item.href}
+                    scroll={false}
                     onClick={(e) => handleNavClick(e, item.href)}
                     className="block px-4 py-3.5 text-lg font-semibold text-gray-700 rounded-xl 
                              hover:bg-primary hover:text-white transition-colors font-heading"
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -213,13 +224,14 @@ export function Header({ forceScrolled = false }: HeaderProps) {
             )}
             style={{ transitionDelay: isMobileMenuOpen ? '300ms' : '0ms' }}
           >
-            <a
-              href="#contacto"
-              onClick={(e) => handleNavClick(e, '#contacto')}
+            <Link
+              href="/#contacto"
+              scroll={false}
+              onClick={(e) => handleNavClick(e, '/#contacto')}
               className="block w-full btn btn-primary btn-lg text-center"
             >
               Agendar Consultoría
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Contact Info */}

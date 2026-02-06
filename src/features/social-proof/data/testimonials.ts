@@ -33,6 +33,22 @@ export const testimonials: Testimonial[] = [
     content: 'Diego nos ayudó a ordenar nuestras finanzas desde cero. Su enfoque práctico y cercano hizo toda la diferencia para nuestro emprendimiento.',
     rating: 5,
   },
+  {
+    id: '4',
+    name: 'Roberto Salazar',
+    role: 'Presidente del Consejo',
+    organization: 'Cooperativa Financiera del Norte',
+    content: 'La metodología de DAI+ nos permitió identificar oportunidades de mejora que no habíamos visto. Hoy nuestra cooperativa es más eficiente y competitiva en el mercado.',
+    rating: 5,
+  },
+  {
+    id: '5',
+    name: 'Laura Vásquez',
+    role: 'Directora de Operaciones',
+    organization: 'Grupo Empresarial Andino',
+    content: 'Lo que más valoramos es el acompañamiento continuo. No se trata solo de una consultoría puntual, sino de un socio estratégico que entiende nuestros desafíos y nos guía paso a paso.',
+    rating: 5,
+  },
 ];
 
 // Placeholder client logos - replace with actual logos

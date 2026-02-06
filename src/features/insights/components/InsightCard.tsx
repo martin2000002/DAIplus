@@ -1,4 +1,5 @@
 import { Insight } from '../data/insights';
+import { type LucideIcon } from 'lucide-react';
 
 interface InsightCardProps {
   insight: Insight;
@@ -19,7 +20,6 @@ export function InsightCard({ insight, index }: InsightCardProps) {
       <div className="mb-5">
         <div 
           className="inline-flex items-center justify-center w-14 h-14 rounded-full
-                     bg-linear-to-br from-accent-light to-accent-dark
                      group-hover:scale-110 transition-transform duration-300"
         >
           <Icon className="w-7 h-7 text-white" />

@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { insights } from '@/src/features/services/data/services';
+import { insights } from '../data/insights';
 
 // Register ScrollTrigger
 if (typeof window !== 'undefined') {
@@ -89,60 +89,28 @@ export function InsightsSection() {
           </p>
         </div>
 
-        {/* Cards Grid */}
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {insights.slice(0, 3).map((insight) => {
+        {/* Cards Grid - 4 cards más compactos */}
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+          {insights.map((insight) => {
             const Icon = insight.icon;
             return (
               <div 
                 key={insight.id}
-                className="insight-card card card-hover p-7 md:p-8 group"
+                className="insight-card card card-hover p-5 md:p-6 group"
               >
-                {/* Icon */}
-                <div className="mb-6">
-                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-linear-to-br from-primary to-primary-light group-hover:scale-110 transition-transform duration-300">
-                    <Icon className="w-7 h-7 text-white" />
+                {/* Icon - más pequeño */}
+                <div className="mb-4">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-accent group-hover:scale-110 transition-transform duration-300">
+                    <Icon className="w-6 h-6 text-white" />
                   </div>
                 </div>
 
-                {/* Content */}
-                <h3 className="text-xl font-bold text-primary mb-3 font-heading">
+                {/* Content - más compacto */}
+                <h3 className="text-lg font-bold text-primary mb-2 font-heading">
                   {insight.title}
                 </h3>
                 
-                <p className="text-gray-600 leading-relaxed">
-                  {insight.description}
-                </p>
-
-                {/* Bottom accent line */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 rounded-b-2xl bg-linear-to-r from-primary to-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-              </div>
-            );
-          })}
-        </div>
-        
-        {/* Second row - centered */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mt-6 lg:mt-8 max-w-3xl mx-auto">
-          {insights.slice(3).map((insight) => {
-            const Icon = insight.icon;
-            return (
-              <div 
-                key={insight.id}
-                className="insight-card card card-hover p-7 md:p-8 group"
-              >
-                {/* Icon */}
-                <div className="mb-6">
-                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-linear-to-br from-primary to-primary-light group-hover:scale-110 transition-transform duration-300">
-                    <Icon className="w-7 h-7 text-white" />
-                  </div>
-                </div>
-
-                {/* Content */}
-                <h3 className="text-xl font-bold text-primary mb-3 font-heading">
-                  {insight.title}
-                </h3>
-                
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-sm text-gray-600 leading-relaxed">
                   {insight.description}
                 </p>
 

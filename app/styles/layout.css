@@ -3,90 +3,69 @@
    Sections, Containers, Decorative Elements
    ============================================ */
 
-/* ----- Sections ----- */
+@layer base {
+  /* ----- Sections ----- */
 
-.section {
-  position: relative;
-  overflow: hidden;
-}
-
-.section-light {
-  background: linear-gradient(180deg, var(--color-gray-50) 0%, var(--color-white) 100%);
-}
-
-.section-warm {
-  background: linear-gradient(135deg, var(--color-accent-100) 0%, var(--color-accent-50) 50%, var(--color-accent-100) 100%);
-}
-
-.section-dark {
-  background: linear-gradient(180deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
-  color: white;
-}
-
-.section-dark h2,
-.section-dark h3,
-.section-dark h4 {
-  color: white;
-}
-
-/* ----- Container ----- */
-/* 
- * container-custom: Clase centralizada para contenedores responsive
- * Uso: <div className="container-custom">...</div>
- * 
- * Características:
- * - max-width: 1400px (centrado)
- * - Padding horizontal responsive:
- *   • Mobile:  16px (1rem)
- *   • Tablet:  24px (1.5rem) desde 768px
- *   • Desktop: 32px (2rem) desde 1024px [MÁXIMO]
- */
-/* 
- * container-custom: Clase centralizada para contenedores responsive
- * Uso: <div className="container-custom">...</div>
- * 
- * Características:
- * - max-width: 1536px (matching Tailwind 2xl, óptimo para pantallas modernas)
- * - Centrado con margin: 0 auto (necesario)
- * - Padding horizontal responsive:
- *   • Mobile:  16px (1rem)
- *   • Tablet:  24px (1.5rem) desde 768px
- *   • Desktop: 32px (2rem) desde 1024px [MÁXIMO]
- */
-
-.container-custom {
-  width: 100%;
-  max-width: 1536px; /* 2xl breakpoint - mejor para pantallas modernas */
-  margin: 0 auto; /* Necesario para centrar */
-  padding: 0 1rem;
-}
-
-@media (min-width: 768px) {
-  .container-custom {
-    padding: 0 1.5rem;
+  .section {
+    position: relative;
+    overflow: hidden;
   }
-}
 
-@media (min-width: 1024px) {
-  .container-custom {
-    padding: 0 2rem;
+  .section-light {
+    background: linear-gradient(180deg, var(--color-gray-50) 0%, var(--color-white) 100%);
   }
-}
 
-/* ----- Decorative Circles ----- */
+  .section-warm {
+    background: linear-gradient(135deg, var(--color-accent-100) 0%, var(--color-accent-50) 50%, var(--color-accent-100) 100%);
+  }
 
-.circle-deco {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-}
+  .section-dark {
+    background: linear-gradient(180deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+    color: white;
+  }
 
-.circle-deco-primary {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
-  opacity: 0.08;
-}
+  .section-dark h2,
+  .section-dark h3,
+  .section-dark h4 {
+    color: white;
+  }
 
-.circle-deco-accent {
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
-  opacity: 0.12;
+  /* ----- Container ----- */
+
+  .container-custom {
+    width: 100%;
+    max-width: 1536px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-custom {
+      padding: 0 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-custom {
+      padding: 0 2rem;
+    }
+  }
+
+  /* ----- Decorative Circles ----- */
+
+  .circle-deco {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .circle-deco-primary {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    opacity: 0.08;
+  }
+
+  .circle-deco-accent {
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+    opacity: 0.12;
+  }
 }

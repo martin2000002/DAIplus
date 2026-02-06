@@ -2,24 +2,16 @@
 
 import { useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { CheckCircle2, ArrowRight, Users, Building2, GraduationCap, Rocket, BookOpen } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { services } from '../data/services';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
-
-// Map icon names to components
-const iconMap = {
-  Users,
-  Building2,
-  GraduationCap,
-  Rocket,
-  BookOpen,
-};
 
 export function ServicesSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -91,15 +83,25 @@ export function ServicesSection() {
     const card = cardsRef.current[index];
     if (!card) return;
 
+    const image = card.querySelector('.service-image');
+
     gsap.to(card, {
-      scale: isEntering ? 1.03 : 1,
-      y: isEntering ? -8 : 0,
+      scale: isEntering ? 1.02 : 1,
+      y: isEntering ? -6 : 0,
       boxShadow: isEntering 
         ? '0 20px 40px -10px rgba(31, 79, 115, 0.25)' 
-        : '0 4px 20px -2px rgba(31, 79, 115, 0.12)',
+        : '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
       duration: 0.3,
       ease: 'power2.out'
     });
+
+    if (image) {
+      gsap.to(image, {
+        scale: isEntering ? 1.08 : 1,
+        duration: 0.5,
+        ease: 'power2.out'
+      });
+    }
   };
 
   const handleContactClick = () => {
@@ -109,132 +111,137 @@ export function ServicesSection() {
     }
   };
 
-  // Get bullet points for each service (use bulletPoints, benefits, or first 3 pillar titles)
-  const getServiceBullets = (service: typeof services[0]): string[] => {
-    if (service.bulletPoints) return service.bulletPoints.slice(0, 3);
-    if (service.benefits) return service.benefits.slice(0, 3);
-    if (service.pillars) return service.pillars.slice(0, 3).map(p => p.title);
-    if (service.courses) return service.courses.slice(0, 3).map(c => c.title);
-    return [];
-  };
-
   return (
     <section 
       ref={sectionRef}
       id="servicios" 
       className="section section-dark py-20 md:py-28"
     >
-
       <div className="container-custom relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-14 md:mb-20">
-          <span className="services-badge inline-block px-5 py-2 mb-5 text-sm font-semibold text-accent-dark bg-accent/25 rounded-full font-heading">
+        <div className="text-center mb-12 md:mb-16">
+          <span className="inline-block px-5 py-2 mb-5 text-sm font-semibold text-accent bg-accent/20 rounded-full font-heading">
             Lo Que Hacemos
           </span>
           
-          <h2 className="services-title heading-lg text-primary mb-5 font-heading">
+          <h2 className="services-title heading-lg text-white mb-5 font-heading">
             Nuestros Servicios
           </h2>
           
-          <p className="services-subtitle text-body-lg text-white max-w-2xl mx-auto">
-            Servicios integrales adaptados a la realidad de cada organización, 
-            desde cooperativas hasta personas naturales.
+          <p className="services-subtitle text-body-lg text-white/70 max-w-2xl mx-auto">
+            Servicios integrales adaptados a la realidad de cada cliente, desde cooperativas y organizaciones hasta personas naturales.
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="services-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {services.map((service, index) => {
-            const Icon = iconMap[service.iconName];
-            const isAzul = service.accent === 'azul';
-            const bullets = getServiceBullets(service);
-            
-            return (
+        {/* Services Grid - Top row 3, bottom row 2 centered */}
+        <div className="services-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+          {services.slice(0, 3).map((service, index) => (
               <Link 
                 key={service.id}
                 href={`/servicios/${service.slug}`}
                 ref={el => { cardsRef.current[index] = el; }}
                 onMouseEnter={() => handleCardHover(index, true)}
                 onMouseLeave={() => handleCardHover(index, false)}
-                className="service-card card overflow-hidden group cursor-pointer block bg-white"
+                className="service-card flex flex-col overflow-hidden rounded-2xl group cursor-pointer bg-white shadow-sm transition-shadow"
               >
-                {/* Top accent bar */}
-                <div className={`h-1.5 w-full ${
-                  isAzul 
-                    ? 'bg-linear-to-r from-primary to-primary-light'
-                    : 'bg-linear-to-r from-accent to-accent-light'
-                }`} />
-                
-                <div className="p-6 md:p-7">
-                  {/* Icon & Title */}
-                  <div className="flex items-start gap-4 mb-5">
-                    <div className={`shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110 ${
-                      isAzul 
-                        ? 'bg-primary/10 text-primary'
-                        : 'bg-accent/10 text-accent'
-                    }`}>
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    
-                    <div className="flex-1 min-w-0">
-                      <span className={`text-xs font-bold uppercase tracking-wider ${
-                        isAzul ? 'text-primary-light' : 'text-accent'
-                      } font-heading`}>
-                        {service.subtitle}
-                      </span>
-                      <h3 className="text-lg font-bold text-primary mt-1 font-heading leading-tight">
-                        {service.shortTitle}
-                      </h3>
-                    </div>
-                  </div>
+                {/* Image */}
+                <div className="relative h-40 overflow-hidden">
+                  <Image
+                    src={service.headerImage}
+                    alt={service.shortTitle}
+                    fill
+                    className="service-image object-cover transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    unoptimized
+                  />
+                  {/* Brand overlay */}
+                  <div className="absolute inset-0 img-overlay" />
+                  {/* Accent badge on image */}
+                  <span className="absolute bottom-3 left-4 px-3 py-1.5 text-xs font-bold text-white bg-black/30 backdrop-blur-sm rounded-full font-heading">
+                    {service.subtitle}
+                  </span>
+                </div>
 
-                  {/* Description */}
-                  <p className="text-gray-600 mb-5 leading-relaxed text-sm line-clamp-3">
+                {/* Content */}
+                <div className="flex flex-col flex-1 p-5">
+                  <h3 className="text-base font-bold text-primary mb-2 font-heading leading-snug">
+                    {service.shortTitle}
+                  </h3>
+                  
+                  <p className="text-gray-600 leading-relaxed text-sm line-clamp-3 mb-4">
                     {service.description}
                   </p>
 
-                  {/* Benefits / Bullet Points */}
-                  <ul className="space-y-2 mb-5">
-                    {bullets.map((bullet, i) => (
-                      <li key={i} className="flex items-start gap-2.5 text-sm text-gray-700">
-                        <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 ${
-                          isAzul ? 'text-primary' : 'text-accent'
-                        }`} />
-                        <span className="line-clamp-1">{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* View More Link */}
-                  <div className={`flex items-center gap-2 text-sm font-semibold font-heading transition-colors ${
-                    isAzul 
-                      ? 'text-primary group-hover:text-primary-light' 
-                      : 'text-accent group-hover:text-accent-dark'
-                  }`}>
+                  {/* View More - Always at bottom */}
+                  <div className="flex items-center gap-2 text-sm font-semibold font-heading mt-auto text-accent group-hover:text-accent-light transition-colors">
                     Ver más
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>
+              </Link>
+          ))}
+        </div>
 
-                {/* Hover overlay */}
-                <div className={`absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500 pointer-events-none ${
-                  isAzul 
-                    ? 'bg-linear-to-br from-primary to-transparent'
-                    : 'bg-linear-to-br from-accent to-transparent'
-                }`} />
+        {/* Second row - 2 cards centered */}
+        <div className="services-grid grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6 mt-5 lg:mt-6 max-w-4xl mx-auto">
+          {services.slice(3).map((service, index) => {
+            const realIndex = index + 3;
+            
+            return (
+              <Link 
+                key={service.id}
+                href={`/servicios/${service.slug}`}
+                ref={el => { cardsRef.current[realIndex] = el; }}
+                onMouseEnter={() => handleCardHover(realIndex, true)}
+                onMouseLeave={() => handleCardHover(realIndex, false)}
+                className="service-card flex flex-col overflow-hidden rounded-2xl group cursor-pointer bg-white shadow-sm transition-shadow"
+              >
+                {/* Image */}
+                <div className="relative h-40 overflow-hidden">
+                  <Image
+                    src={service.headerImage}
+                    alt={service.shortTitle}
+                    fill
+                    className="service-image object-cover transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    unoptimized
+                  />
+                  {/* Brand overlay */}
+                  <div className="absolute inset-0 img-overlay" />
+                  <span className="absolute bottom-3 left-4 px-3 py-1.5 text-xs font-bold text-white bg-black/30 backdrop-blur-sm rounded-full font-heading">
+                    {service.subtitle}
+                  </span>
+                </div>
+
+                {/* Content */}
+                <div className="flex flex-col flex-1 p-5">
+                  <h3 className="text-base font-bold text-primary mb-2 font-heading leading-snug">
+                    {service.shortTitle}
+                  </h3>
+                  
+                  <p className="text-gray-600 leading-relaxed text-sm line-clamp-3 mb-4">
+                    {service.description}
+                  </p>
+
+                  {/* View More - Always at bottom */}
+                  <div className="flex items-center gap-2 text-sm font-semibold font-heading mt-auto text-accent group-hover:text-accent-light transition-colors">
+                    Ver más
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  </div>
+                </div>
               </Link>
             );
           })}
         </div>
 
         {/* CTA */}
-        <div className="services-cta mt-14 md:mt-20 text-center">
-          <p className="text-gray-700 mb-6">
+        <div className="services-cta mt-12 md:mt-16 text-center">
+          <p className="text-white/60 mb-6">
             ¿No encuentras lo que buscas? Contáctanos para una solución personalizada.
           </p>
           <button
             onClick={handleContactClick}
-            className="btn btn-secondary btn-lg group"
+            className="btn btn-primary btn-lg group"
           >
             Solicitar Información
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />

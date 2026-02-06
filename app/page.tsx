@@ -5,7 +5,7 @@ import { HeroSection } from '@/src/features/hero';
 import { InsightsSection } from '@/src/features/insights';
 import { ServicesSection } from '@/src/features/services';
 import { SocialProofSection } from '@/src/features/social-proof';
-import { BlogSection } from '@/src/features/blog';
+import { NewsletterSection } from '@/src/features/newsletter';
 import { EventsSection } from '@/src/features/events';
 import { TeamSection } from '@/src/features/team';
 import { ContactSection } from '@/src/features/contact';
@@ -31,8 +31,8 @@ export default function Home() {
         {/* Social Proof - Logos and testimonials (White bg) */}
         <SocialProofSection />
         
-        {/* Blog Section - Articles and insights (Blue gradient bg) */}
-        <BlogSection />
+        {/* Newsletter / Biblioteca Section */}
+        <NewsletterSection />
         
         {/* Events Section - Gallery of events (White bg) */}
         <EventsSection />

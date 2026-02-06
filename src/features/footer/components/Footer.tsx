@@ -3,23 +3,32 @@
 import { Linkedin, Facebook, Mail, Phone, MapPin } from 'lucide-react';
 
 const navLinks = [
-  { label: 'Inicio', href: '#inicio' },
-  { label: 'Insights', href: '#insights' },
-  { label: 'Servicios', href: '#servicios' },
-  { label: 'Nosotros', href: '#nosotros' },
-  { label: 'Contacto', href: '#contacto' },
+  { label: 'Inicio', href: '/#inicio' },
+  { label: 'Enfoque', href: '/#enfoque' },
+  { label: 'Servicios', href: '/#servicios' },
+  { label: 'Biblioteca', href: '/biblioteca' },
+  { label: 'Nosotros', href: '/#nosotros' },
+  { label: 'Contacto', href: '/#contacto' },
 ];
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    // If it's a direct route (no hash), let browser navigate normally
+    if (!href.includes('#')) return;
+
+    const targetId = href.replace('/#', '').replace('#', '');
+    const isHome = window.location.pathname === '/';
+
+    if (isHome) {
+      e.preventDefault();
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
+    // On sub-pages, let the browser navigate to /#section
   };
 
   return (
@@ -141,12 +150,12 @@ export function Footer() {
             </p>
             
             <div className="flex items-center gap-6 text-sm text-white/50">
-              <a href="#" className="hover:text-white transition-colors">
+              <span className="hover:text-white transition-colors cursor-default">
                 Política de Privacidad
-              </a>
-              <a href="#" className="hover:text-white transition-colors">
+              </span>
+              <span className="hover:text-white transition-colors cursor-default">
                 Términos de Uso
-              </a>
+              </span>
             </div>
           </div>
         </div>

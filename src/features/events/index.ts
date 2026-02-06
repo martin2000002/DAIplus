@@ -1,3 +1,15 @@
 export { EventsSection } from './components/EventsSection';
-export { events, getRecentEvents, getCategoryLabel, getCategoryColor } from './data/events';
+export { EventCard } from './components/EventCard';
+export { EventDetailPage } from './components/EventDetailPage';
+export {
+  events,
+  getRecentEvents,
+  getEventBySlug,
+  getAllEventSlugs,
+  getCategoryLabel,
+  categoryConfig,
+  formatEventDate,
+  isUpcoming,
+  getSortedEvents,
+} from './data/events';
 export type { Event } from './data/events';

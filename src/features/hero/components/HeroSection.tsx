@@ -36,84 +36,77 @@ export function HeroSection() {
       delay: 0.2
     });
 
-    // Phase 1: Cinematic video reveal
+    // Phase 1: Cinematic video reveal (más rápido)
     master.to('.hero-video', {
       scale: 1,
       opacity: 1,
-      duration: 2.5,
+      duration: 1.5,
       ease: 'power2.out'
     })
     .to('.hero-overlay', {
       opacity: 1,
-      duration: 1.5,
-    }, '-=2')
+      duration: 1,
+    }, '-=1.2')
 
-    // Phase 2: Logo reveal with scale
+    // Phase 2: Logo reveal with scale (más rápido)
     .to('.hero-logo', {
       y: 0,
       opacity: 1,
       scale: 1,
-      duration: 1.2,
+      duration: 0.8,
       ease: 'power4.out'
-    }, '-=1.2')
+    }, '-=0.8')
 
-    // Phase 3: Description fade in
+    // Phase 3: Description fade in (más rápido)
     .to('.hero-description', {
       y: 0,
       opacity: 1,
-      duration: 0.8
-    }, '-=0.5')
+      duration: 0.6
+    }, '-=0.3')
 
-    // Phase 5: CTA buttons with pop
+    // Phase 5: CTA buttons with pop (más rápido)
     .to('.hero-cta', {
       y: 0,
       opacity: 1,
       scale: 1,
-      duration: 0.6,
-      stagger: 0.12,
+      duration: 0.5,
+      stagger: 0.1,
       ease: 'back.out(1.7)',
       clearProps: 'transform,scale' // Limpia transform para que CSS hover funcione
-    }, '-=0.3')
-
-    // Phase 6: Line animation
-    .to('.hero-line', {
-      scaleX: 1,
-      duration: 0.8,
-      ease: 'power2.inOut'
     }, '-=0.2')
 
-    // Phase 7: Stats with counting animation
+    // Phase 6: Line animation (más rápido)
+    .to('.hero-line', {
+      scaleX: 1,
+      duration: 0.6,
+      ease: 'power2.inOut'
+    }, '-=0.15')
+
+    // Phase 7: Stats with counting animation (más rápido y sin stagger)
     .to('.hero-stat', {
       y: 0,
       opacity: 1,
-      duration: 0.6,
-      stagger: 0.1,
+      duration: 0.5,
+      stagger: 0, // Sin stagger para que aparezcan todos juntos
       ease: 'power3.out'
-    }, '-=0.4');
+    }, '-=0.3');
 
-    // Animate stat numbers
+    // Animate stat numbers - TODOS AL MISMO TIEMPO
     const statValues = containerRef.current.querySelectorAll('.hero-stat-value');
     statValues.forEach((el, i) => {
       const finalValue = stats[i].value.replace(/[^0-9]/g, '');
       const suffix = stats[i].value.replace(/[0-9]/g, '');
       
       master.to({}, {
-        duration: 1.5,
+        duration: 1,
         ease: 'power2.out',
         onUpdate: function() {
           const progress = this.progress();
           const current = Math.round(parseFloat(finalValue) * progress);
           el.textContent = current + suffix;
         }
-      }, '-=0.6');
+      }, '-=1'); // Mismo timing para todos los contadores
     });
-
-    // Scroll indicator
-    master.to('.hero-scroll', {
-      y: 0,
-      opacity: 1,
-      duration: 0.6
-    }, '-=1');
 
   }, { scope: containerRef });
 
@@ -210,18 +203,46 @@ export function HeroSection() {
             {/* Animated line */}
             <div className="hero-line h-px bg-linear-to-r from-transparent via-white/20 to-transparent max-w-2xl mx-auto mb-4 md:mb-6 origin-center" />
             
+            {/*SIMPLE*/}
+            {
             <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-lg md:max-w-xl mx-auto">
               {stats.map((stat, index) => (
                 <div key={index} className="hero-stat text-center">
                   <div className="hero-stat-value text-xl md:text-2xl lg:text-3xl font-bold text-accent font-heading tabular-nums">
                     {stat.value}
                   </div>
-                  <div className="text-[10px] md:text-xs text-white/40 mt-1 uppercase tracking-wider">
+                  <div className="text-[10px] md:text-xs text-white/80 mt-1 uppercase tracking-wider">
                     {stat.label}
                   </div>
                 </div>
               ))}
             </div>
+            }
+
+            {/*GLASSMORPHISM*/}
+            {/*
+            <div className="grid grid-cols-3 gap-3 md:gap-5 max-w-xl mx-auto px-4">
+              {stats.map((stat, index) => (
+                <div 
+                  key={index} 
+                  className="hero-stat relative overflow-hidden rounded-xl backdrop-blur-lg bg-white/5 border border-white/10 px-3 py-4 md:px-4 md:py-5 text-center shadow-lg"
+                  style={{ 
+                    backdropFilter: 'blur(12px)',
+                    WebkitBackdropFilter: 'blur(12px)'
+                  }}
+                >
+                  <div className="relative z-10">
+                    <div className="hero-stat-value text-2xl md:text-3xl font-bold text-accent font-heading tabular-nums mb-1.5">
+                      {stat.value}
+                    </div>
+                    <div className="text-[10px] md:text-xs text-white/70 tracking-wide leading-tight">
+                      {stat.label}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            */}
           </div>
         </div>
       </div>

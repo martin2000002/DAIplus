@@ -52,22 +52,4 @@
   transform: translateX(40px);
 }
 
-/* ----- Logo Slider Animation ----- */
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.logo-slider-track {
-  display: flex;
-  animation: scroll 25s linear infinite;
-}
-
-.logo-slider-track:hover {
-  animation-play-state: paused;
-}
+/* ----- Logo Slider (now GSAP-powered, CSS fallback removed) ----- */

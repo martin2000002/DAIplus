@@ -238,7 +238,7 @@ export function ContactSection() {
                 alt="Consultoría profesional"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-linear-to-t from-primary-dark/80 via-primary/40 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-primary-dark/80 via-primary/40 to-primary-dark/20" />
               <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
                 <h3 className="text-2xl font-bold mb-3 font-heading text-white">Trabajemos juntos</h3>
                 <p className="text-white/90 text-sm leading-relaxed">

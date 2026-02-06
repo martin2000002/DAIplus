@@ -4,11 +4,6 @@ import {
   GraduationCap, 
   Rocket,
   BookOpen,
-  Target,
-  TrendingUp,
-  Globe,
-  BarChart3,
-  Lightbulb,
   type LucideIcon
 } from 'lucide-react';
 
@@ -58,8 +53,8 @@ export const services: Service[] = [
   {
     id: 'cooperativas',
     slug: 'cooperativas',
-    title: 'Servicios Integrales para Cooperativas de Ahorro y Crédito',
-    shortTitle: 'Cooperativas de Ahorro y Crédito',
+    title: 'Consultoría de Alto Impacto',
+    shortTitle: 'Consultoría de Alto Impacto',
     subtitle: 'Consultoría · Asesoría · Capacitación',
     description: 'Brindamos acompañamiento especializado para fortalecer la gestión organizacional, financiera y comercial de las cooperativas.',
     fullDescription: 'Brindamos acompañamiento especializado para fortalecer la gestión organizacional, financiera y comercial de las cooperativas de ahorro y crédito, mejorar la toma de decisiones y asegurar su sostenibilidad en entornos cada vez más exigentes. Nuestro enfoque es flexible y contextualizado, considerando el tamaño, madurez institucional y entorno de cada cooperativa, con el objetivo de generar soluciones prácticas, aplicables y de alto impacto.',
@@ -85,8 +80,8 @@ export const services: Service[] = [
   {
     id: 'empresas',
     slug: 'empresas',
-    title: 'Servicios de Consultoría y Asesoría para Empresas y Organizaciones',
-    shortTitle: 'Empresas y Organizaciones',
+    title: 'Asesoría Estratégica',
+    shortTitle: 'Asesoría Estratégica',
     subtitle: 'Estrategia · Sostenibilidad · Impacto',
     description: 'Servicios orientados a fortalecer la gestión, sostenibilidad, impacto social y desempeño institucional.',
     fullDescription: 'Ofrecemos servicios de consultoría y asesoría orientados a fortalecer la gestión, sostenibilidad, impacto social y desempeño institucional de empresas, organizaciones de la Economía Popular y Solidaria, fundaciones, ONG y organizaciones de la sociedad civil. Aportamos visión estratégica, rigor técnico y enfoque práctico para convertir desafíos en oportunidades de crecimiento.',
@@ -104,8 +99,8 @@ export const services: Service[] = [
   {
     id: 'personas',
     slug: 'personas',
-    title: 'Servicios de Capacitación y Asesoría para Personas Naturales',
-    shortTitle: 'Personas Naturales',
+    title: 'Capacitación Transformacional',
+    shortTitle: 'Capacitación Transformacional',
     subtitle: 'Educación Financiera · Planificación',
     description: 'Espacios de capacitación y asesoría para comprender mejor las finanzas y tomar decisiones económicas más informadas.',
     fullDescription: 'Desarrollamos espacios de capacitación y asesoría dirigidos a personas que desean comprender mejor sus finanzas, organizar sus recursos y tomar decisiones económicas más informadas. Nuestro enfoque es práctico, cercano y adaptado a cada realidad, promoviendo una relación más consciente, responsable y estratégica con el dinero.',
@@ -122,8 +117,8 @@ export const services: Service[] = [
   {
     id: 'programas',
     slug: 'programas',
-    title: 'Implementación de Programas y Proyectos',
-    shortTitle: 'Programas y Proyectos',
+    title: 'Autonomía Económica',
+    shortTitle: 'Autonomía Económica',
     subtitle: 'Desarrollo · Innovación · Sostenibilidad',
     description: 'Diseñamos e implementamos programas de desarrollo económico, fortalecimiento organizacional e innovación.',
     fullDescription: 'Diseñamos e implementamos programas y proyectos de desarrollo económico y ambiental, fortalecimiento organizacional, educación financiera, inclusión económica, innovación y sostenibilidad. Nuestros proyectos se alinean a objetivos estratégicos claros y cuentan con indicadores de impacto que permiten medir resultados, aprendizaje y sostenibilidad en el tiempo.',
@@ -141,8 +136,8 @@ export const services: Service[] = [
   {
     id: 'cursos',
     slug: 'cursos',
-    title: 'Cursos Especializados DAI+',
-    shortTitle: 'Cursos Especializados',
+    title: 'Educación Financiera',
+    shortTitle: 'Educación Financiera',
     subtitle: 'Presencial · Virtual · Híbrido',
     description: 'Cursos estructurados que permiten profundizar, reforzar y dar continuidad a los procesos de aprendizaje.',
     fullDescription: 'Además de nuestras capacitaciones corporativas, ofrecemos cursos estructurados y complementarios que permiten profundizar, reforzar y dar continuidad a los procesos de aprendizaje. Estos cursos pueden ser contratados por organizaciones o personas de forma independiente, como una extensión natural de las capacitaciones, en modalidad presencial, virtual o híbrida.',
@@ -192,43 +187,6 @@ export const services: Service[] = [
       }
     ]
   }
-];
-
-// ============================================
-// Insights Estratégicos
-// ============================================
-
-export const insights = [
-  {
-    id: 'transformacion',
-    title: 'Consultoría de Alto Impacto',
-    description: 'Impulsamos la transformación de organizaciones y cooperativas mediante consultoría de alto impacto, asesoría estratégica y capacitación transformacional.',
-    icon: TrendingUp,
-  },
-  {
-    id: 'soluciones',
-    title: 'Soluciones Integrales',
-    description: 'Diseñamos y construimos soluciones integrales, personalizadas y orientadas a resultados, fortaleciendo la gestión estratégica, institucional y comercial.',
-    icon: Target,
-  },
-  {
-    id: 'ventajas',
-    title: 'Ventajas Competitivas',
-    description: 'Creamos ventajas competitivas sostenibles y resilientes, basadas en innovación, estrategia y desarrollo del talento humano.',
-    icon: Lightbulb,
-  },
-  {
-    id: 'ecosistemas',
-    title: 'Ecosistemas de Desarrollo',
-    description: 'Promovemos ecosistemas que permiten a personas y organizaciones alcanzar su máximo potencial y avanzar hacia la autonomía económica.',
-    icon: Globe,
-  },
-  {
-    id: 'sostenibilidad',
-    title: 'Sostenibilidad Integral',
-    description: 'Acompañamos la integración de criterios ambientales y de sostenibilidad, generando valor económico, social y ambiental simultáneamente.',
-    icon: BarChart3,
-  },
 ];
 
 // ============================================
