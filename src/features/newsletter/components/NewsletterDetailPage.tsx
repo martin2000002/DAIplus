@@ -118,7 +118,7 @@ export function NewsletterDetailPage({ newsletter }: NewsletterDetailPageProps) 
         </div>
       </section>
 
-      <section className="py-8 md:py-12 bg-white border-b border-gray-100">
+      <section className="section section-light py-8 md:py-12 border-b border-gray-100">
         <div className="container-custom">
           <p className="text-lg md:text-xl text-gray-700 leading-relaxed font-medium border-l-4 border-accent pl-6">
               {newsletter.excerpt}
@@ -127,7 +127,7 @@ export function NewsletterDetailPage({ newsletter }: NewsletterDetailPageProps) 
       </section>
 
       {/* Content */}
-      <section className="py-10 md:py-16 bg-white">
+      <section className="section section-light py-10 md:py-16">
         <div className="container-custom">
             {/* Body paragraphs */}
             <div className="newsletter-body space-y-6">

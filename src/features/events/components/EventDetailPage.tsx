@@ -121,7 +121,7 @@ export function EventDetailPage({ event }: EventDetailPageProps) {
       </section>
 
       {/* Content — same width as services (full container, no max-w-3xl) */}
-      <section className="py-8 md:py-12 bg-white border-b border-gray-100">
+      <section className="section section-light py-8 md:py-12 border-b border-gray-100">
         <div className="container-custom">
           <p className="text-base md:text-lg text-gray-700 leading-relaxed">
             {event.fullDescription}
@@ -129,7 +129,7 @@ export function EventDetailPage({ event }: EventDetailPageProps) {
         </div>
       </section>
 
-      <section className="py-10 md:py-16 bg-white">
+      <section className="section section-light py-10 md:py-16">
         <div className="container-custom">
           {/* Body paragraphs */}
           <div className="event-body space-y-6">

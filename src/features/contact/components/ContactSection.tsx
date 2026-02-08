@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import Image from 'next/image';
 import { Send, Loader2 } from 'lucide-react';
 import { useContactForm } from '../hooks/useContactForm';
 
@@ -79,43 +80,43 @@ export function ContactSection() {
     <section 
       ref={sectionRef}
       id="contacto" 
-      className="section py-16 md:py-20 bg-white"
+      className="section section-light py-16 md:py-20"
     >
       <div className="container-custom relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
+        {/* Centered Header */}
+        <div className="contact-header text-center mb-10 md:mb-12">
+          <span className="inline-block px-5 py-2 mb-4 text-sm font-semibold text-primary bg-primary/10 rounded-full font-heading">
+            Contáctanos
+          </span>
+          
+          <h2 className="heading-md text-primary mb-4 font-heading">
+            ¿Listo para Transformar tu Organización?
+          </h2>
+          
+          <p className="text-base text-gray-600 max-w-2xl mx-auto">
+            Ya sea que busques consultoría estratégica, capacitaciones, cursos
+            especializados o acompañamiento integral, estamos aquí para ayudarte
+            a alcanzar tus objetivos.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-stretch">
           
           {/* Left Side - Form */}
           <div>
-            {/* Section Header */}
-            <div className="contact-header mb-8">
-              <span className="inline-block px-4 py-1.5 mb-4 text-sm font-semibold text-primary bg-primary/10 rounded-full font-heading">
-                Contáctanos
-              </span>
-              
-              <h2 className="heading-md text-primary mb-4 font-heading">
-                ¿Listo para Transformar tus Finanzas?
-              </h2>
-              
-              <p className="text-base text-gray-600">
-                Cuéntanos sobre tu organización y cómo podemos ayudarte a alcanzar 
-                tus objetivos financieros.
-              </p>
-            </div>
-
-            {/* Contact Form */}
             <div className="contact-form">
-              <div className="card p-6 md:p-8">
-                <h3 className="text-xl font-bold text-primary mb-6 font-heading">
+              <div className="card p-5 md:p-7">
+                <h3 className="text-lg font-bold text-primary mb-5 font-heading">
                   Conversemos
                 </h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-3.5">
               {/* Success Message */}
               {status === 'success' && (
-                <div className="p-4 rounded-xl bg-green-50 border border-green-200 text-green-800 text-center">
-                  <p className="font-semibold font-heading">
+                <div className="p-3 rounded-xl bg-green-50 border border-green-200 text-green-800 text-center">
+                  <p className="font-semibold font-heading text-sm">
                     ¡Mensaje enviado correctamente!
                   </p>
-                  <p className="text-sm mt-1">
+                  <p className="text-xs mt-1">
                     Nos pondremos en contacto contigo pronto.
                   </p>
                 </div>
@@ -123,15 +124,15 @@ export function ContactSection() {
 
               {/* Error Message */}
               {status === 'error' && (
-                <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 text-center">
-                  <p className="font-semibold font-heading">Error al enviar</p>
-                  <p className="text-sm mt-1">{errorMessage}</p>
+                <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-800 text-center">
+                  <p className="font-semibold font-heading text-sm">Error al enviar</p>
+                  <p className="text-xs mt-1">{errorMessage}</p>
                 </div>
               )}
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
                 <div>
-                  <label htmlFor="nombre" className="block mb-1.5 text-sm font-medium text-gray-700 font-heading">
+                  <label htmlFor="nombre" className="block mb-1 text-sm font-medium text-gray-700 font-heading">
                     Nombre *
                   </label>
                   <input
@@ -142,7 +143,7 @@ export function ContactSection() {
                     value={formData.nombre}
                     onChange={handleChange}
                     disabled={status === 'loading'}
-                    className={`input py-2.5 text-sm ${errors.nombre ? 'input-error' : ''}`}
+                    className={`input py-2 text-sm ${errors.nombre ? 'input-error' : ''}`}
                   />
                   {errors.nombre && (
                     <p className="mt-1 text-xs text-red-500">{errors.nombre}</p>
@@ -150,7 +151,7 @@ export function ContactSection() {
                 </div>
 
                 <div>
-                  <label htmlFor="correo" className="block mb-1.5 text-sm font-medium text-gray-700 font-heading">
+                  <label htmlFor="correo" className="block mb-1 text-sm font-medium text-gray-700 font-heading">
                     Correo Electrónico *
                   </label>
                   <input
@@ -161,7 +162,7 @@ export function ContactSection() {
                     value={formData.correo}
                     onChange={handleChange}
                     disabled={status === 'loading'}
-                    className={`input py-2.5 text-sm ${errors.correo ? 'input-error' : ''}`}
+                    className={`input py-2 text-sm ${errors.correo ? 'input-error' : ''}`}
                   />
                   {errors.correo && (
                     <p className="mt-1 text-xs text-red-500">{errors.correo}</p>
@@ -170,7 +171,7 @@ export function ContactSection() {
               </div>
 
               <div>
-                <label htmlFor="organizacion" className="block mb-1.5 text-sm font-medium text-gray-700 font-heading">
+                <label htmlFor="organizacion" className="block mb-1 text-sm font-medium text-gray-700 font-heading">
                   Organización
                 </label>
                 <input
@@ -181,23 +182,23 @@ export function ContactSection() {
                   value={formData.organizacion}
                   onChange={handleChange}
                   disabled={status === 'loading'}
-                  className="input py-2.5 text-sm"
+                  className="input py-2 text-sm"
                 />
               </div>
 
               <div>
-                <label htmlFor="mensaje" className="block mb-1.5 text-sm font-medium text-gray-700 font-heading">
+                <label htmlFor="mensaje" className="block mb-1 text-sm font-medium text-gray-700 font-heading">
                   Mensaje *
                 </label>
                 <textarea
                   id="mensaje"
                   name="mensaje"
-                  rows={3}
+                  rows={2}
                   placeholder="Cuéntanos cómo podemos ayudarte..."
                   value={formData.mensaje}
                   onChange={handleChange}
                   disabled={status === 'loading'}
-                  className={`input py-2.5 text-sm resize-none ${errors.mensaje ? 'input-error' : ''}`}
+                  className={`input py-2 text-sm resize-none ${errors.mensaje ? 'input-error' : ''}`}
                 />
                 {errors.mensaje && (
                   <p className="mt-1 text-xs text-red-500">{errors.mensaje}</p>
@@ -222,8 +223,8 @@ export function ContactSection() {
                 )}
               </button>
 
-              <p className="text-xs text-center text-gray-500">
-                * Campos requeridos. Tu información será tratada con confidencialidad.
+              <p className="text-xs text-center text-gray-400">
+                * Tu información será tratada con confidencialidad.
               </p>
             </form>
               </div>
@@ -233,16 +234,18 @@ export function ContactSection() {
           {/* Right Side - Image */}
           <div className="contact-info hidden lg:flex items-stretch">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl w-full">
-              <img 
+              <Image 
                 src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80"
                 alt="Consultoría profesional"
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                unoptimized
               />
               <div className="absolute inset-0 bg-linear-to-t from-primary-dark/80 via-primary/40 to-primary-dark/20" />
-              <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                <h3 className="text-2xl font-bold mb-3 font-heading text-white">Trabajemos juntos</h3>
+              <div className="absolute bottom-0 left-0 right-0 p-7 text-white">
+                <h3 className="text-xl font-bold mb-2 font-heading text-white">Trabajemos juntos</h3>
                 <p className="text-white/90 text-sm leading-relaxed">
-                  Más de 10 años acompañando organizaciones en su camino hacia el éxito financiero y organizacional.
+                  Consultoría, capacitación, cursos y acompañamiento estratégico para organizaciones y personas.
                 </p>
               </div>
             </div>

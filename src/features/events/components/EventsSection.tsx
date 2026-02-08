@@ -128,7 +128,7 @@ export function EventsSection() {
     <section
       ref={sectionRef}
       id="eventos"
-      className="section py-20 md:py-28 bg-white"
+      className="section section-light py-20 md:py-28"
     >
       <div className="container-custom relative z-10">
         {/* Section Header */}
@@ -310,7 +310,7 @@ export function EventsSection() {
         <div className="events-subscribe mt-12 md:mt-14 max-w-xl mx-auto">
           <div className="rounded-2xl overflow-hidden">
             <div className="h-1 bg-linear-to-r from-primary via-primary-light to-primary" />
-            <div className="bg-gray-50 border border-gray-200 border-t-0 rounded-b-2xl p-7 md:p-8">
+            <div className="bg-white border border-gray-200/80 border-t-0 rounded-b-2xl p-7 md:p-8 shadow-sm">
               <div className="flex items-center gap-3 mb-5">
                 <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
                   <Bell className="w-5 h-5 text-primary" />

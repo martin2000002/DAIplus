@@ -1,178 +1,182 @@
 'use client';
 
 import { useRef } from 'react';
+import Link from 'next/link';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { Linkedin, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Linkedin } from 'lucide-react';
+import { teamMembers } from '../data/team';
+import { cn } from '@/src/lib/utils';
+import { CoverflowCarousel } from '@/src/shared/components/ui/CoverflowCarousel';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const consultant = {
-  name: 'Diego Andrade',
-  role: 'Consultor Principal | DAI+',
-  bio: 'En DAI+ creemos que la verdadera transformación no ocurre solo cuando se cambian procesos, sino cuando evolucionan la forma de pensar, decidir y actuar de las personas y las organizaciones. Diseñamos e implementamos soluciones estratégicas, innovadoras y personalizadas para impulsar la sostenibilidad, competitividad y propuesta de valor de nuestros clientes.',
-  credentials: [
-    'Consultoría de alto impacto para cooperativas y empresas',
-    'Diseño e implementación de estrategias organizacionales',
-    'Capacitación transformacional orientada a resultados',
-    'Más de 10 años de experiencia en el sector',
-  ],
-  linkedin: 'https://linkedin.com/in/diego-andrade',
-};
-
 export function TeamSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
+  // Entrance animations
   useGSAP(() => {
     if (!sectionRef.current) return;
 
-    // Header animation
-    const headerTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: 'top 80%',
-        toggleActions: 'play none none reverse',
-      },
-    });
-
-    headerTl.fromTo('.team-header > *',
+    gsap.fromTo(
+      '.team-header > *',
       { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.6, stagger: 0.1 }
-    );
-
-    // Photo animation
-    gsap.fromTo('.team-photo',
-      { opacity: 0, scale: 0.8, clipPath: 'circle(0% at 50% 50%)' },
       {
-        opacity: 1,
-        scale: 1,
-        clipPath: 'circle(100% at 50% 50%)',
-        duration: 1.2,
-        ease: 'power3.out',
+        opacity: 1, y: 0, duration: 0.6, stagger: 0.1,
         scrollTrigger: {
-          trigger: '.team-content',
-          start: 'top 75%',
+          trigger: sectionRef.current,
+          start: 'top 80%',
           toggleActions: 'play none none reverse',
         },
-      }
+      },
     );
 
-    // Bio animation
-    gsap.fromTo('.team-bio > *',
-      { opacity: 0, x: 30 },
+    gsap.fromTo(
+      '.team-carousel-wrapper',
+      { opacity: 0, y: 40 },
       {
-        opacity: 1,
-        x: 0,
-        duration: 0.6,
-        stagger: 0.1,
+        opacity: 1, y: 0, duration: 0.7,
         scrollTrigger: {
-          trigger: '.team-bio',
-          start: 'top 75%',
+          trigger: '.team-carousel-wrapper',
+          start: 'top 80%',
           toggleActions: 'play none none reverse',
         },
-      }
+      },
     );
 
-    // Decorative ring animation
-    gsap.to('.photo-ring', {
+    // Rotate dashed rings infinitely
+    gsap.to('.photo-ring-spin', {
       rotation: 360,
-      duration: 20,
+      duration: 35,
       repeat: -1,
       ease: 'none',
     });
-
   }, { scope: sectionRef });
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id="nosotros" 
+      id="nosotros"
       className="section section-dark py-20 md:py-28"
     >
-      {/* Decorative Elements */}
-      <div className="circle-deco circle-deco-accent w-[400px] h-[400px] -top-48 -left-48 opacity-10" />
+      {/* Decorative */}
+      <div className="circle-deco circle-deco-accent w-100 h-100 -top-48 -left-48 opacity-10" />
       <div className="circle-deco circle-deco-primary w-96 h-96 bottom-0 -right-32 opacity-10" />
 
       <div className="container-custom relative z-10">
-        {/* Section Header */}
-        <div className="team-header text-center mb-14 md:mb-20">
+        {/* Header */}
+        <div className="team-header text-center mb-14 md:mb-16">
           <span className="inline-block px-5 py-2 mb-5 text-sm font-semibold text-accent bg-accent/20 rounded-full font-heading">
             Quiénes Somos
           </span>
-          
+
           <h2 className="heading-lg text-white mb-5 font-heading">
-            Tu Socio Estratégico
+            Nuestro Equipo
           </h2>
-          
-          <p className="text-body-lg text-white/80 max-w-2xl mx-auto">
-            Nos integramos como un socio estratégico temporal, comprometido con 
-            resultados reales y capacidades que permanecen en el tiempo.
+
+          <p className="text-body-lg text-white/70 max-w-2xl mx-auto">
+            Acompañamos a cooperativas de ahorro y crédito, organizaciones y personas a fortalecer su forma de pensar, decidir y actuar, integrando estrategia, innovación y sostenibilidad para generar impacto real y duradero.
           </p>
         </div>
 
-        {/* Consultant Card */}
-        <div className="team-content max-w-4xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
-            {/* Photo Container */}
-            <div className="team-photo relative shrink-0">
-              {/* Outer decorative ring */}
-              <div 
-                className="photo-ring absolute inset-0 rounded-full border-2 border-dashed border-accent/30"
-                style={{ transform: 'scale(1.15)' }}
-              />
-              
-              {/* Photo container */}
-              <div className="relative w-52 h-52 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white/20 bg-linear-to-br from-primary-light to-primary flex items-center justify-center">
-                {/* Placeholder initials */}
-                <span className="text-7xl md:text-8xl font-bold text-white/90 font-heading">
-                  DA
-                </span>
+        {/* Carousel */}
+        <div className="team-carousel-wrapper">
+          <CoverflowCarousel
+            items={teamMembers}
+            keyExtractor={(m) => m.id}
+            autoplayInterval={4}
+            dotVariant="light"
+            ariaLabel="Carrusel del equipo"
+            renderItem={(member) => (
+              <div className="w-80 md:w-88 bg-white rounded-2xl p-6 md:p-7 text-center shadow-card">
+                {/* Avatar with ring */}
+                <div className="relative w-28 h-28 md:w-32 md:h-32 mx-auto mb-4">
+                  <svg
+                    className="photo-ring-spin absolute inset-0 w-full h-full"
+                    viewBox="0 0 100 100"
+                    style={{ opacity: 0.4 }}
+                  >
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="48"
+                      fill="none"
+                      stroke={member.accentColor === 'accent' ? 'rgba(245,166,35,0.4)' : 'rgba(31,79,115,0.3)'}
+                      strokeWidth="1.5"
+                      strokeDasharray="12 8"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+
+                  <div className="absolute inset-2.5 md:inset-3 rounded-full overflow-hidden border-3 border-white shadow-lg bg-linear-to-br from-primary-light to-primary flex items-center justify-center">
+                    <span className="text-2xl md:text-3xl font-bold text-white/90 font-heading select-none">
+                      {member.initials}
+                    </span>
+                  </div>
+
+                  <div
+                    className={cn(
+                      'absolute -top-1 -right-0.5 w-3.5 h-3.5 rounded-full shadow-sm',
+                      member.accentColor === 'accent' ? 'bg-accent' : 'bg-primary-light',
+                    )}
+                  />
+
+                  <div
+                    className={cn(
+                      'absolute -bottom-1 -left-0.5 w-2.5 h-2.5 rounded-full shadow-sm',
+                      member.accentColor === 'accent' ? 'bg-primary-light' : 'bg-accent',
+                    )}
+                  />
+                </div>
+
+                {/* Info */}
+                <h3 className="text-lg font-bold text-primary font-heading mb-1">
+                  {member.name}
+                </h3>
+
+                <p
+                  className={cn(
+                    'text-sm font-semibold mb-3 font-heading',
+                    member.accentColor === 'accent' ? 'text-accent' : 'text-primary-light',
+                  )}
+                >
+                  {member.role}
+                </p>
+
+                <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                  {member.shortBio}
+                </p>
+
+                {/* LinkedIn pill */}
+                <a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(
+                    'inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold transition-all font-heading',
+                    member.accentColor === 'accent'
+                      ? 'bg-accent/10 text-accent hover:bg-accent/20'
+                      : 'bg-primary/10 text-primary hover:bg-primary/20',
+                  )}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Linkedin className="w-3.5 h-3.5" />
+                  LinkedIn
+                </a>
               </div>
+            )}
+          />
+        </div>
 
-              {/* Small decorative circles */}
-              <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-accent animate-pulse" />
-              <div className="absolute -bottom-2 -left-2 w-6 h-6 rounded-full bg-primary-light" />
-            </div>
-
-            {/* Bio Content */}
-            <div className="team-bio text-center lg:text-left">
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 font-heading">
-                {consultant.name}
-              </h3>
-              
-              <p className="text-accent font-semibold mb-5 font-heading">
-                {consultant.role}
-              </p>
-              
-              <p className="text-white/85 leading-relaxed mb-7">
-                {consultant.bio}
-              </p>
-
-              {/* Credentials */}
-              <ul className="space-y-3 mb-7">
-                {consultant.credentials.map((credential, i) => (
-                  <li key={i} className="flex items-center gap-3 text-white/80 text-sm">
-                    <CheckCircle2 className="w-5 h-5 text-accent shrink-0" />
-                    <span>{credential}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* LinkedIn Link */}
-              <a
-                href={consultant.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full text-white font-medium transition-colors font-heading"
-              >
-                <Linkedin className="w-5 h-5" />
-                Conectar en LinkedIn
-              </a>
-            </div>
-          </div>
+        {/* CTA */}
+        <div className="mt-10 text-center">
+          <Link href="/equipo" className="btn btn-primary btn-lg group">
+            Conoce al equipo
+            <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+          </Link>
         </div>
       </div>
     </section>

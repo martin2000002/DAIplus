@@ -6,14 +6,14 @@ import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 
+// Nav items match the section order in page.tsx (Hero excluded — reached via logo)
 const navItems = [
-  { label: 'Inicio', href: '/#inicio' },
   { label: 'Enfoque', href: '/#enfoque' },
   { label: 'Servicios', href: '/#servicios' },
+  { label: 'Respaldo', href: '/#respaldo' },
   { label: 'Biblioteca', href: '/#biblioteca' },
   { label: 'Eventos', href: '/#eventos' },
   { label: 'Nosotros', href: '/#nosotros' },
-  { label: 'Contacto', href: '/#contacto' },
 ];
 
 interface HeaderProps {
@@ -23,6 +23,7 @@ interface HeaderProps {
 export function Header({ forceScrolled = false }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,6 +56,42 @@ export function Header({ forceScrolled = false }: HeaderProps) {
       document.body.style.overflow = '';
     };
   }, [isMobileMenuOpen]);
+
+  // Track active section via IntersectionObserver
+  useEffect(() => {
+    const sectionIds = [
+      ...navItems.map((item) => item.href.replace('/#', '')),
+      'contacto',
+    ];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(
+              sectionIds.includes(entry.target.id) ? entry.target.id : '',
+            );
+          }
+        });
+      },
+      { rootMargin: '-20% 0px -75% 0px', threshold: 0 },
+    );
+
+    const timer = setTimeout(() => {
+      sectionIds.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+      });
+      // Also observe hero to clear indicator when at top
+      const hero = document.getElementById('inicio');
+      if (hero) observer.observe(hero);
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
+  }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLElement>, href: string) => {
     const targetId = href.replace('/#', '').replace('#', '');
@@ -104,7 +141,7 @@ export function Header({ forceScrolled = false }: HeaderProps) {
               tabIndex={showScrolledStyle ? 0 : -1}
             >
               <Image
-                src="/images/logo.png"
+                src="/images/logo-compact.png"
                 alt="DAI+ Logo"
                 width={120}
                 height={40}
@@ -118,30 +155,47 @@ export function Header({ forceScrolled = false }: HeaderProps) {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  scroll={false}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className={cn(
-                    "px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 font-heading",
-                    "hover:bg-accent hover:text-white",
-                    showScrolledStyle
-                      ? 'text-gray-700'
-                      : 'text-white/90'
-                  )}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const isActive = activeSection === item.href.replace('/#', '');
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    scroll={false}
+                    onClick={(e) => handleNavClick(e, item.href)}
+                    className={cn(
+                      'relative px-4 py-2 text-sm font-semibold transition-all duration-300 font-heading',
+                      isActive
+                        ? showScrolledStyle ? 'text-accent' : 'text-white'
+                        : cn(
+                            'rounded-full hover:bg-accent/10 hover:text-accent',
+                            showScrolledStyle ? 'text-gray-700' : 'text-white/90',
+                          ),
+                    )}
+                  >
+                    {item.label}
+                    <span
+                      className={cn(
+                        'absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-0.5 rounded-full bg-accent transition-all duration-300 ease-out',
+                        isActive ? 'w-7 opacity-100' : 'w-0 opacity-0',
+                      )}
+                    />
+                  </Link>
+                );
+              })}
               <Link
                 href="/#contacto"
                 scroll={false}
                 onClick={(e) => handleNavClick(e, '/#contacto')}
-                className="ml-2 btn btn-primary btn-sm"
+                className="relative ml-2 btn btn-primary btn-sm"
               >
                 Agendar Cita
+                <span
+                  className={cn(
+                    'absolute -bottom-1.5 left-1/2 -translate-x-1/2 h-0.5 rounded-full bg-accent transition-all duration-300 ease-out',
+                    activeSection === 'contacto' ? 'w-7 opacity-100' : 'w-0 opacity-0',
+                  )}
+                />
               </Link>
             </nav>
 
@@ -204,8 +258,12 @@ export function Header({ forceScrolled = false }: HeaderProps) {
                     href={item.href}
                     scroll={false}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className="block px-4 py-3.5 text-lg font-semibold text-gray-700 rounded-xl 
-                             hover:bg-primary hover:text-white transition-colors font-heading"
+                    className={cn(
+                      'block px-4 py-3.5 text-lg font-semibold rounded-xl transition-colors font-heading',
+                      activeSection === item.href.replace('/#', '')
+                        ? 'text-accent bg-accent/5'
+                        : 'text-gray-700 hover:bg-primary hover:text-white',
+                    )}
                   >
                     {item.label}
                   </Link>
@@ -228,24 +286,15 @@ export function Header({ forceScrolled = false }: HeaderProps) {
               href="/#contacto"
               scroll={false}
               onClick={(e) => handleNavClick(e, '/#contacto')}
-              className="block w-full btn btn-primary btn-lg text-center"
+              className={cn(
+                'block w-full btn btn-lg text-center',
+                activeSection === 'contacto'
+                  ? 'btn-accent'
+                  : 'btn-primary',
+              )}
             >
-              Agendar Consultoría
+              Agendar Cita
             </Link>
-          </div>
-
-          {/* Mobile Contact Info */}
-          <div 
-            className={cn(
-              'pt-6 text-center text-sm text-gray-500 transform transition-all duration-300',
-              isMobileMenuOpen 
-                ? 'translate-y-0 opacity-100' 
-                : 'translate-y-4 opacity-0'
-            )}
-            style={{ transitionDelay: isMobileMenuOpen ? '400ms' : '0ms' }}
-          >
-            <p className="font-medium">+593 998 711 386</p>
-            <p>dandradei@outlook.es</p>
           </div>
         </div>
       </div>

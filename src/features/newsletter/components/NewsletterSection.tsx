@@ -136,7 +136,7 @@ export function NewsletterSection() {
           {/* Subscribe Card */}
           <div className="rounded-2xl overflow-hidden">
             <div className="h-1 bg-linear-to-r from-accent via-accent-light to-accent" />
-            <div className="bg-white/[0.07] backdrop-blur-xs border border-white/10 border-t-0 rounded-b-2xl p-7 md:p-8">
+            <div className="bg-white/12 backdrop-blur-sm border border-white/15 border-t-0 rounded-b-2xl p-7 md:p-8">
               <div className="flex items-center gap-3 mb-5">
                 <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center shrink-0">
                   <Send className="w-5 h-5 text-accent" />
@@ -175,7 +175,7 @@ export function NewsletterSection() {
                     type="submit"
                     disabled={isSubmitting}
                     className={cn(
-                      'btn btn-primary btn-sm inline-flex items-center justify-center gap-2 shrink-0',
+                      'px-5 py-2.5 rounded-full bg-accent text-white text-sm font-semibold font-heading inline-flex items-center justify-center gap-2 shrink-0 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer',
                       isSubmitting && 'opacity-70 pointer-events-none'
                     )}
                   >

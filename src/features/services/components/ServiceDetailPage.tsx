@@ -92,7 +92,7 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
       </section>
 
       {/* Description Section */}
-      <section className="py-8 md:py-12 bg-white border-b border-gray-100">
+      <section className="section section-light py-8 md:py-12 border-b border-gray-100">
         <div className="container-custom">
           <p className="text-base md:text-lg text-gray-700 leading-relaxed">
             {service.fullDescription}
@@ -101,7 +101,7 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
       </section>
 
       {/* Content Sections */}
-      <section className="service-sections py-10 md:py-16 bg-white">
+      <section className="service-sections section section-light py-10 md:py-16">
         <div className="container-custom">
           <div className="space-y-12">
 
@@ -157,7 +157,7 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
                   {service.bulletPoints.map((point, index) => (
                     <div 
                       key={index}
-                      className="flex items-start gap-3 p-3.5 rounded-xl bg-gray-50 hover:bg-primary/5 transition-colors"
+                      className="flex items-start gap-3 p-3.5 rounded-xl bg-primary/[0.03] border border-primary/[0.06] hover:bg-primary/[0.06] transition-colors"
                     >
                       <CheckCircle2 className={`w-5 h-5 shrink-0 mt-0.5 ${
                         isAzul ? 'text-primary' : 'text-accent'

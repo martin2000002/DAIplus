@@ -17,9 +17,9 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://daiplus.com'),
+  metadataBase: new URL('https://daiplus.net'),
   title: {
-    default: "DAI+ | Consultoría Financiera Especializada",
+    default: "DAI+",
     template: "%s | DAI+"
   },
   description: "DAI+ - Desarrollo, Asesoría e Innovación. Consultoría financiera especializada para cooperativas, empresas y personas. Planificación financiera, análisis estratégico y educación financiera en Quito, Ecuador.",
@@ -89,8 +89,8 @@ export default function RootLayout({
   return (
     <html lang="es" className="scroll-smooth">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/svg+xml" href="/svgs/icon.svg" />
+        <link rel="apple-touch-icon" href="/images/icon.png" />
         <meta name="theme-color" content="#1F4F73" data-color="primary" />
         <script dangerouslySetInnerHTML={{
           __html: `
